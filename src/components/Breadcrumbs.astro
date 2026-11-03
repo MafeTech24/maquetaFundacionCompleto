@@ -1,10 +1,16 @@
 ---
-// Breadcrumbs.astro — Migas de pan accesibles
+// Breadcrumbs.astro — Migas de pan accesibles (+ datos estructurados BreadcrumbList)
+import { breadcrumbSchema } from '../lib/seo';
+
 export interface Props {
   items: { label: string; href?: string }[];
 }
 const { items } = Astro.props;
+// Datos estructurados para que Google muestre la ruta de la página en los resultados
+const jsonLd = { '@context': 'https://schema.org', ...breadcrumbSchema(items, Astro.url.pathname) };
 ---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 <nav aria-label="Migas de pan" class="flex items-center gap-2 text-sm mb-6 flex-wrap">
   {items.map((item, i) => (

@@ -4,6 +4,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CTASection from '../../components/CTASection.astro';
 import { getCollection, getEntry } from 'astro:content';
+import { ORG_ID, SITE_URL, personId } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const posts = await getCollection('recursos');
@@ -21,12 +22,45 @@ const allPosts = await getCollection('recursos');
 const related = allPosts
   .filter((p) => p.slug !== post.slug && p.data.category === post.data.category)
   .slice(0, 3);
+
+// Autoría: si el artículo lo firma un profesional del equipo, se enlaza con su perfil en /equipo
+const autorEsEquipo = !post.data.author.startsWith('Equipo');
+const nombreAutor = post.data.author.replace(/^(Dra?|Lic|Mgter)\.\s*/i, '');
+const autor = autorEsEquipo
+  ? { '@type': 'Person', '@id': personId(nombreAutor), name: nombreAutor, url: `${SITE_URL}/equipo`, worksFor: { '@id': ORG_ID } }
+  : { '@id': ORG_ID };
+
+const pageURL = new URL(`/recursos/${post.slug}`, SITE_URL).href;
+const articleSchema = {
+  '@type': 'Article',
+  '@id': `${pageURL}#articulo`,
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: post.data.pubDate.toISOString(),
+  inLanguage: 'es-AR',
+  articleSection: post.data.category,
+  keywords: post.data.tags.join(', '),
+  author: autor,
+  publisher: { '@id': ORG_ID },
+  image: new URL(post.data.image ?? '/images/og-image.jpg', SITE_URL).href,
+  mainEntityOfPage: pageURL,
+  isAccessibleForFree: true,
+};
 ---
 
 <PageLayout
   title={post.data.title}
   description={post.data.description}
   ogType="article"
+  ogImage={post.data.image}
+  schema={articleSchema}
+  article={{
+    publishedTime: post.data.pubDate,
+    author: post.data.author,
+    section: post.data.category,
+    tags: post.data.tags,
+  }}
 >
   <!-- Hero del post -->
   <div class="bg-gradient-to-br from-brand-950 to-gray-950 text-white py-16">
@@ -47,7 +81,11 @@ const related = allPosts
       <h1 class="font-sora font-extrabold text-3xl sm:text-4xl text-white mb-4 leading-tight">{post.data.title}</h1>
       <p class="text-white/70 text-base leading-relaxed max-w-2xl">{post.data.description}</p>
       <div class="flex items-center gap-3 mt-6 text-sm text-white/50">
-        <span>{post.data.author}</span>
+        {autorEsEquipo ? (
+          <a href={`/equipo#${personId(nombreAutor).split('#')[1]}`} rel="author" class="hover:text-white transition-colors">{post.data.author}</a>
+        ) : (
+          <span>{post.data.author}</span>
+        )}
         <span>·</span>
         <time datetime={post.data.pubDate.toISOString()}>
           {post.data.pubDate.toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' })}

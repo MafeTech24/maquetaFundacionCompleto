@@ -5,30 +5,7 @@ import StatCounter from '../components/StatCounter.astro';
 import ProgramCard from '../components/ProgramCard.astro';
 import CTASection from '../components/CTASection.astro';
 
-const homeSchema = {
-  "@context": "https://schema.org",
-  "@type": ["MedicalOrganization", "NGO"],
-  "name": "Fundación Por Un Mundo Mejor",
-  "alternateName": "Fundación Por Un Mundo Mejor",
-  "description": "Fundación para el tratamiento y prevención de las adicciones. Más de 20 años acompañando personas y familias en Córdoba, Argentina.",
-  "url": "https://fundacionporunmundomejor.org.ar",
-  "logo": "https://fundacionporunmundomejor.org.ar/favicon.svg",
-  "medicalSpecialty": "Psychiatry",
-  "address": {
-    "@type": "PostalAddress",
-    // TODO: verificar dirección antes de publicar
-    "streetAddress": "27 de Abril 616",
-    "addressLocality": "Córdoba",
-    "addressRegion": "Córdoba",
-    "postalCode": "5000",
-    "addressCountry": "AR"
-  },
-  "telephone": "+5493516716580", // TODO: verificar teléfono antes de publicar
-  "sameAs": [
-    "https://www.instagram.com/fundacion.porunmundomejor/",
-    "https://www.facebook.com/fundacionporunmundomejor/"
-  ]
-};
+// Los datos estructurados de la organización se emiten en todas las páginas desde src/lib/seo.ts
 
 const stats = [
   { value: '20+', label: 'años de trayectoria', iconName: 'Building2' },
@@ -113,8 +90,8 @@ const objetivos = [
 
 <PageLayout
   title="Inicio"
-  description="Fundación para el tratamiento y prevención de las adicciones en Córdoba, Argentina. Más de 20 años acompañando personas y familias hacia una vida plena."
-  schema={homeSchema}
+  seoTitle="Tratamiento de adicciones en Córdoba | Fundación Por Un Mundo Mejor"
+  description="Tratamiento y prevención de adicciones en Córdoba, Argentina. Más de 20 años acompañando a personas y familias: Hospital de Día, ambulatorio y orientación familiar."
 >
 
   <!-- ═══════════════════════════════════════════════════════════

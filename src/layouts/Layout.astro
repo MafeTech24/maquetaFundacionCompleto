@@ -1,28 +1,61 @@
 ---
 // Layout principal — Fundación Por Un Mundo Mejor
-// Incluye: head completo, header, footer, WhatsApp flotante, toggle dark mode
+// Incluye: head completo (SEO, Open Graph, datos estructurados), header, footer, WhatsApp flotante, toggle dark mode
 import '../styles/global.css';
+import { globalSchema, SITE_NAME } from '../lib/seo';
+
 export interface Props {
+  /** Título corto de la página; se le agrega " | Fundación Por Un Mundo Mejor" */
   title: string;
+  /** Título completo opcional (reemplaza al armado automático, ej. en la home) */
+  seoTitle?: string;
   description?: string;
   ogImage?: string;
+  ogImageAlt?: string;
   ogType?: string;
   canonical?: string;
-  schema?: object;
+  /** Datos estructurados propios de la página (objeto o lista de objetos, sin @context) */
+  schema?: object | object[];
+  /** true = la página no se indexa en buscadores */
+  noindex?: boolean;
+  /** Metadatos de artículo (solo para ogType="article") */
+  article?: {
+    publishedTime?: Date;
+    modifiedTime?: Date;
+    author?: string;
+    section?: string;
+    tags?: string[];
+  };
 }
 
 const {
   title,
-  description = 'Fundación para el tratamiento y prevención de las adicciones. Más de 20 años acompañando personas y familias en Córdoba, Argentina.',
+  seoTitle,
+  description = 'Fundación para el tratamiento y prevención de las adicciones en Córdoba, Argentina. Más de 20 años acompañando a personas y familias con un equipo interdisciplinario.',
   ogImage = '/images/og-image.jpg',
+  ogImageAlt = 'Fundación Por Un Mundo Mejor — tratamiento y prevención de adicciones en Córdoba',
   ogType = 'website',
   canonical,
   schema,
+  noindex = false,
+  article,
 } = Astro.props;
+
+const fullTitle = seoTitle ?? `${title} | ${SITE_NAME}`;
 
 const canonicalURL = canonical
   ? new URL(canonical, Astro.site)
   : new URL(Astro.url.pathname, Astro.site);
+
+const ogImageURL = new URL(ogImage, Astro.site);
+const ogImageIsDefault = ogImage === '/images/og-image.jpg';
+
+// Grafo de datos estructurados: organización + sitio (siempre) + lo propio de la página
+const pageSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [...globalSchema(), ...pageSchema],
+};
 ---
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
@@ -32,29 +65,48 @@ const canonicalURL = canonical
   <meta name="theme-color" content="#1a9e80" />
 
   <!-- SEO -->
-  <title>{title} | Fundación Por Un Mundo Mejor</title>
+  <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
+  <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+  <meta name="author" content={article?.author ?? SITE_NAME} />
+
+  <!-- Geolocalización (SEO local) -->
+  <meta name="geo.region" content="AR-X" />
+  <meta name="geo.placename" content="Córdoba, Argentina" />
 
   <!-- Open Graph -->
   <meta property="og:type" content={ogType} />
-  <meta property="og:title" content={`${title} | Fundación Por Un Mundo Mejor`} />
+  <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+  <meta property="og:image" content={ogImageURL} />
+  {ogImageIsDefault && <meta property="og:image:width" content="1200" />}
+  {ogImageIsDefault && <meta property="og:image:height" content="630" />}
+  <meta property="og:image:alt" content={ogImageAlt} />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:locale" content="es_AR" />
-  <meta property="og:site_name" content="Fundación Por Un Mundo Mejor" />
+  <meta property="og:site_name" content={SITE_NAME} />
+  {article?.publishedTime && <meta property="article:published_time" content={article.publishedTime.toISOString()} />}
+  {article?.modifiedTime && <meta property="article:modified_time" content={article.modifiedTime.toISOString()} />}
+  {article?.author && <meta property="article:author" content={article.author} />}
+  {article?.section && <meta property="article:section" content={article.section} />}
+  {article?.tags?.map((tag) => <meta property="article:tag" content={tag} />)}
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={`${title} | Fundación Por Un Mundo Mejor`} />
+  <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+  <meta name="twitter:image" content={ogImageURL} />
+  <meta name="twitter:image:alt" content={ogImageAlt} />
 
   <!-- Schema.org JSON-LD -->
-  {schema && (
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-  )}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <!-- Resumen del sitio para buscadores con IA -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="Resumen del sitio para IA" />
+
+  <!-- Contenido extra de cada página (ej. redirecciones) -->
+  <slot name="head" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

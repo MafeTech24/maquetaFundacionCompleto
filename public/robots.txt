@@ -1,3 +1,33 @@
+# Fundación Por Un Mundo Mejor — robots.txt
+# Se permite el rastreo a todos los buscadores, incluidos los asistentes de IA,
+# para que puedan encontrar y citar la información de la fundación.
+
 User-agent: *
 Allow: /
-Sitemap: https://fundacionporunmundomejor.org.ar/sitemap-index.xml
+
+# Buscadores y asistentes de IA (permitidos explícitamente)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://porunmundomejor.org.ar/sitemap-index.xml

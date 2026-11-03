@@ -3,10 +3,13 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://fundacionporunmundomejor.org.ar',
+  site: 'https://porunmundomejor.org.ar',
   integrations: [
     tailwind(),
-    sitemap(),
+    sitemap({
+      // Páginas que no deben aparecer en buscadores
+      filter: (page) => !page.includes('/programas/comunidad-terapeutica'),
+    }),
   ],
   output: 'static',
 });
