@@ -1,0 +1,230 @@
+---
+// /planes-de-tratamiento — Planes A, B y C con timeline visual
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTASection from '../components/CTASection.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<PageLayout
+  title="Planes de Tratamiento"
+  description="Los planes de tratamiento de la Fundación Por Un Mundo Mejor: Plan A, Plan B y Plan C, cómo se combinan las modalidades y cómo se decide el recorrido de cada persona."
+>
+  <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">
+    <div class="container-6xl relative z-10">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Planes de Tratamiento' }]} />
+      <h1 class="font-heading font-black text-4xl sm:text-5xl text-white mb-4">Planes de Tratamiento</h1>
+      <p class="text-[oklch(1_0_0_/_0.72)] text-lg max-w-2xl leading-relaxed">
+        Las distintas modalidades no funcionan de manera aislada: se combinan en planes de tratamiento que acompañan el proceso completo de cada persona, desde la evaluación inicial hasta la consolidación de la reinserción.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <!-- Cómo se decide -->
+    <section class="bg-brand-50 dark:bg-brand-950/30 border border-brand-100 dark:border-brand-900 rounded-2xl p-8">
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-4">¿Cómo se decide el plan?</h2>
+      <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4 whitespace-normal break-words">
+        El plan de tratamiento se define durante el <strong>proceso de admisión</strong>, en base a la evaluación clínica del equipo y en acuerdo con la persona y su familia. Los factores que se consideran son:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {[
+          'Nivel de compromiso del consumo y tipo de sustancias',
+          'Presencia de trastornos duales (personalidad, psicosis, discapacidad intelectual)',
+          'Grado de inserción social conservada (trabajo, estudio, vínculos)',
+          'Disponibilidad y calidad de la red de contención familiar',
+          'Historial de tratamientos previos y causas de abandono',
+          'Motivación y momento del proceso de cambio',
+        ].map((factor) => (
+          <div class="flex items-start gap-3 p-3 bg-white dark:bg-gray-800 rounded-lg">
+            <span class="w-2 h-2 rounded-full bg-brand-500 flex-shrink-0 mt-1.5"></span>
+            <span class="text-sm text-gray-700 dark:text-gray-300 whitespace-normal break-words">{factor}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Plan A -->
+    <section class="w-full min-w-0">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-teal-600 flex items-center justify-center shadow-lg shadow-brand-500/20">
+          <span class="font-heading font-extrabold text-white text-2xl">A</span>
+        </div>
+        <div>
+          <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white">Plan A</h2>
+          <p class="text-brand-600 dark:text-brand-400 text-sm font-medium">Para personas que perdieron inserción social</p>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6 sm:p-8 mb-6 shadow-sm overflow-hidden">
+        <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed mb-8 whitespace-normal break-words max-w-full">
+          El Plan A está indicado cuando el nivel de compromiso del consumo es alto y la persona ha perdido en gran medida su inserción social: vínculos afectivos deteriorados, abandono del trabajo o estudio, contexto de vida que no ofrece contención para un tratamiento menos intensivo.
+        </p>
+
+        <!-- Timeline visual del Plan A -->
+        <div class="relative">
+          <div class="hidden sm:block absolute top-8 left-0 right-0 h-0.5 bg-gradient-to-r from-brand-500 via-teal-400 to-brand-300" style="left: 80px; right: 80px;"></div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[
+              {
+                etapa: 'Etapa 1',
+                duracion: '6 meses',
+                modalidad: 'Hospital de Día',
+                href: '/programas/hospital-de-dia',
+                icon: 'Sun',
+                desc: 'Jornada completa de 8 horas con regreso al hogar. Capacitación laboral, micro-emprendimientos, reinserción gradual.',
+              },
+              {
+                etapa: 'Etapa 2',
+                duracion: '3 meses',
+                modalidad: 'Tratamiento Ambulatorio',
+                href: '/programas/tratamiento-ambulatorio',
+                icon: 'Activity',
+                desc: 'Consolidación en el entorno cotidiano. Tres espacios semanales: grupal, individual/familiar y multifamiliar.',
+              },
+            ].map((etapa) => (
+              <div class="relative flex flex-col min-w-0">
+                <div class="flex flex-col items-center sm:items-start mb-4">
+                  <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-teal-600 flex items-center justify-center mb-3 shadow-lg shadow-brand-500/20 z-10 text-white">
+                    <Icon name={etapa.icon} class="w-7 h-7 text-white" strokeWidth="1.75" />
+                  </div>
+                  <span class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider">{etapa.etapa}</span>
+                  <span class="text-lg font-heading font-bold text-gray-900 dark:text-white mt-1">{etapa.duracion}</span>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 flex-1">
+                  <a href={etapa.href} class="font-heading font-semibold text-brand-700 dark:text-brand-300 text-sm hover:underline block mb-2">{etapa.modalidad} →</a>
+                  <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed whitespace-normal break-words">{etapa.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700 flex items-center gap-3">
+          <svg class="w-5 h-5 text-brand-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <!-- TODO: confirmar con la fundación si las duraciones de Hospital de Día y Ambulatorio siguen siendo las mismas ahora que no hay etapa de internación -->
+          <span class="text-sm text-gray-500 dark:text-gray-400"><strong class="text-gray-700 dark:text-gray-300">Duración total estimada:</strong> 9 a 12 meses</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plan B -->
+    <section class="w-full min-w-0">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-brand-600 flex items-center justify-center shadow-lg shadow-teal-500/20">
+          <span class="font-heading font-extrabold text-white text-2xl">B</span>
+        </div>
+        <div>
+          <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white">Plan B</h2>
+          <p class="text-teal-600 dark:text-teal-400 text-sm font-medium">Para personas que conservan inserción social</p>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6 sm:p-8 mb-6 shadow-sm overflow-hidden">
+        <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed mb-8 whitespace-normal break-words max-w-full">
+          El Plan B está indicado cuando, a pesar del consumo problemático, la persona mantiene su inserción social: trabaja o estudia, conserva vínculos afectivos significativos y cuenta con un entorno familiar capaz de ofrecer contención. En este caso, no es necesario un corte con el entorno cotidiano.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {[
+            {
+              etapa: 'Etapa 1',
+              duracion: '3 meses',
+              modalidad: 'Ambulatorio con supervisión familiar',
+              icon: 'Activity',
+              desc: 'Tres espacios semanales con acompañamiento activo de la familia. El entorno familiar es parte explícita del proceso terapéutico.',
+            },
+            {
+              etapa: 'Etapa 2',
+              duracion: '3 meses',
+              modalidad: 'Ambulatorio sin supervisión familiar',
+              icon: 'Footprints',
+              desc: 'Consolidación de la autonomía. Los tres espacios semanales continúan, pero el peso de la supervisión familiar se reduce progresivamente.',
+            },
+          ].map((etapa) => (
+            <div class="flex flex-col min-w-0">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-brand-600 flex items-center justify-center shadow-md text-white flex-shrink-0">
+                  <Icon name={etapa.icon} class="w-6 h-6 text-white" strokeWidth="1.75" />
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider">{etapa.etapa}</span>
+                  <div class="font-heading font-bold text-gray-900 dark:text-white text-base">{etapa.duracion}</div>
+                </div>
+              </div>
+              <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 flex-1">
+                <p class="font-heading font-semibold text-teal-700 dark:text-teal-300 text-sm mb-2">{etapa.modalidad}</p>
+                <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed whitespace-normal break-words">{etapa.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700 flex items-center gap-3">
+          <svg class="w-5 h-5 text-teal-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="text-sm text-gray-500 dark:text-gray-400"><strong class="text-gray-700 dark:text-gray-300">Duración total estimada:</strong> 6 meses</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plan C -->
+    <section class="w-full min-w-0">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center shadow-lg shadow-gray-700/20">
+          <span class="font-heading font-extrabold text-white text-2xl">C</span>
+        </div>
+        <div>
+          <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white">Plan C</h2>
+          <p class="text-gray-500 dark:text-gray-400 text-sm font-medium">Planes a medida según cada caso</p>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6 sm:p-8 shadow-sm overflow-hidden">
+        <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed mb-6 whitespace-normal break-words max-w-full">
+          No todos los casos encajan exactamente en el Plan A o el Plan B. El Plan C contempla combinaciones específicas de modalidades diseñadas a medida para situaciones que requieren una respuesta singular:
+        </p>
+        <ul class="space-y-3">
+          {[
+            'Pacientes duales con comorbilidades psiquiátricas que requieren ajustes en la estructura del proceso',
+            'Casos judicializados con condiciones específicas establecidas por el Superior Tribunal de Justicia de Córdoba',
+            'Personas que iniciaron un tratamiento en otra institución y necesitan continuar con un nuevo equipo',
+            'Situaciones de recaída que requieren una revisión y reformulación del plan anterior',
+            'Casos donde la familia no puede ser convocada activamente y se requieren estrategias alternativas',
+          ].map((item) => (
+            <li class="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <span class="w-2 h-2 rounded-full bg-brand-500 flex-shrink-0 mt-2"></span>
+              <span class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed whitespace-normal break-words">{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-5 leading-relaxed whitespace-normal break-words">
+          En todos los casos del Plan C, el plan se elabora de manera conjunta entre el equipo terapéutico, la persona y su familia, y se revisa periódicamente.
+        </p>
+      </div>
+    </section>
+
+    <CTASection
+      title="¿Querés saber qué plan corresponde a tu situación?"
+      description="La evaluación de admisión es el primer paso. Es gratuita, confidencial y no te compromete a nada más."
+      primaryLabel="Solicitar admisión"
+      primaryHref="/programas/admision"
+      secondaryLabel="WhatsApp"
+      secondaryHref="https://wa.me/5493516716580?text=Hola%2C%20quiero%20saber%20qu%C3%A9%20plan%20de%20tratamiento%20corresponde%20a%20mi%20situaci%C3%B3n"
+      variant="gradient"
+    />
+
+    <RelatedPages
+      pages={[
+        { title: 'Admisión', href: '/programas/admision', description: 'Cómo funciona la evaluación inicial de tres entrevistas.', iconName: 'ClipboardCheck' },
+        { title: 'Todos los Programas', href: '/programas', description: 'Ver cada modalidad de tratamiento en detalle.', iconName: 'LayoutGrid' },
+        { title: 'Para Familias', href: '/familias', description: 'Guía para familias sobre cómo acompañar el proceso.', iconName: 'Users' },
+      ]}
+    />
+  </div>
+</PageLayout>

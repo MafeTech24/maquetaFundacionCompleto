@@ -1,0 +1,131 @@
+---
+// /programas — Índice de las 5 modalidades
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProgramCard from '../../components/ProgramCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import { Image } from 'astro:assets';
+
+const programs = [
+  {
+    title: 'Admisión',
+    description: 'Tres entrevistas psicológicas y psiquiátricas para diagnóstico presuntivo y pronóstico provisorio. El punto de partida de cualquier proceso de tratamiento.',
+    href: '/programas/admision',
+    iconName: 'ClipboardCheck',
+    badge: 'Primer paso',
+    duration: 'Proceso breve de evaluación',
+  },
+  {
+    title: 'Hospital de Día',
+    description: 'Jornada completa de 8 horas diarias. Espacio intensivo hacia la reinserción social y laboral: capacitación práctica, micro-emprendimientos, salidas culturales, deporte y psicoterapia.',
+    href: '/programas/hospital-de-dia',
+    iconName: 'Sun',
+    duration: '6 meses',
+    badge: 'Jornada completa',
+  },
+  {
+    title: 'Psicoterapia Multifamiliar',
+    description: 'Programa de mínimo 12 módulos para familiares. Espacio para repensar el vínculo con el paciente y construir una alianza real entre familias y equipo terapéutico.',
+    href: '/programas/psicoterapia-multifamiliar',
+    iconName: 'Users',
+    duration: 'Mínimo 12 módulos',
+    badge: 'Para familias',
+  },
+  {
+    title: 'Tratamiento Ambulatorio',
+    description: 'Acompañamiento en el entorno familiar con tres espacios semanales: psicoterapia grupal, individual/familiar y multifamiliar.',
+    href: '/programas/tratamiento-ambulatorio',
+    iconName: 'Activity',
+    duration: '3 a 6 meses',
+  },
+  {
+    title: 'Orientación Familiar',
+    description: 'Encuentros quincenales de 3 a 6 meses para familias preocupadas por un ser querido, sin que el paciente participe todavía. Un espacio de orientación y contención.',
+    href: '/programas/orientacion-familiar',
+    iconName: 'HeartHandshake',
+    duration: '3 a 6 meses',
+    badge: 'Sin requisitos',
+  },
+];
+---
+
+<PageLayout
+  title="Programas de Tratamiento"
+  description="Las cinco modalidades de tratamiento de la Fundación Por Un Mundo Mejor: desde la admisión hasta el ambulatorio, adaptadas a cada persona y momento del proceso."
+>
+
+  <!-- Hero -->
+  <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">
+    <div class="container-6xl relative z-10">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Programas' }]} />
+      <h1 class="font-heading font-black text-4xl sm:text-5xl text-white mb-4">Programas de Tratamiento</h1>
+      <p class="text-[oklch(1_0_0_/_0.72)] text-lg max-w-2xl leading-relaxed">
+        Cada persona llega en un momento diferente. Por eso ofrecemos cinco modalidades que se adaptan a distintas situaciones, niveles de compromiso y contextos de vida.
+      </p>
+    </div>
+  </div>
+
+  <!-- Banner de imagen — aspect-ratio 16:9, nunca se deforma -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <div class="w-full rounded-2xl overflow-hidden shadow-soft" style="aspect-ratio: 16 / 9;">
+      <Image
+        src="/images/programas-banner.jpg"
+        alt="Vista general de los programas de tratamiento de la Fundación Por Un Mundo Mejor"
+        width={1600}
+        height={900}
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+    <!-- Intro + imagen secundaria en grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-12">
+      <!-- Texto -->
+      <div class="bg-brand-50 dark:bg-brand-950/30 border border-brand-100 dark:border-brand-900 rounded-2xl p-7">
+        <h2 class="font-sora font-bold text-xl text-gray-900 dark:text-white mb-3">¿Cómo se elige una modalidad?</h2>
+        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+          La modalidad de tratamiento se define a partir de la <strong>evaluación de admisión</strong>: tres entrevistas psicológicas y psiquiátricas donde se analiza el nivel de compromiso del consumo, el contexto familiar y social, la presencia de trastornos duales y las posibilidades de contención del entorno. No hay una única respuesta correcta: hay una respuesta adecuada para cada situación y momento. Si tenés dudas, <a href="/contacto" class="text-brand-600 dark:text-brand-400 hover:underline font-medium">contactate con nosotros</a> y te orientamos sin compromiso.
+        </p>
+      </div>
+      <!-- Imagen secundaria -->
+      <div class="w-full rounded-2xl overflow-hidden shadow-card" style="aspect-ratio: 4 / 3;">
+        <Image
+          src="/images/programas-secundaria.jpg"
+          alt="Taller de oficio en la Fundación Por Un Mundo Mejor"
+          width={900}
+          height={675}
+          class="w-full h-full object-cover object-center"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      {programs.map((prog) => (
+        <ProgramCard {...prog} />
+      ))}
+    </div>
+
+    <!-- Planes -->
+    <div class="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8 mb-12">
+      <h2 class="font-sora font-bold text-2xl text-gray-900 dark:text-white mb-3">¿Cómo se combinan las modalidades?</h2>
+      <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-5">
+        Las modalidades no son excluyentes: forman parte de <strong>planes de tratamiento combinados</strong> que acompañan distintas etapas del proceso. Conocé los planes A, B y C que estructuran el recorrido.
+      </p>
+      <a href="/planes-de-tratamiento" class="inline-flex items-center gap-2 px-5 py-3 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-brand-500/25">
+        Ver planes de tratamiento →
+      </a>
+    </div>
+
+    <!-- CTA -->
+    <CTASection
+      title="¿No sabés por dónde empezar?"
+      description="Nuestro equipo puede orientarte en la primera consulta, sin compromiso y con total confidencialidad."
+      variant="gradient"
+    />
+  </div>
+</PageLayout>

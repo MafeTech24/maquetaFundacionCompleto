@@ -1,0 +1,336 @@
+---
+// Página de inicio — /
+import PageLayout from '../layouts/PageLayout.astro';
+import StatCounter from '../components/StatCounter.astro';
+import ProgramCard from '../components/ProgramCard.astro';
+import CTASection from '../components/CTASection.astro';
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@type": ["MedicalOrganization", "NGO"],
+  "name": "Fundación Por Un Mundo Mejor",
+  "alternateName": "Fundación Por Un Mundo Mejor",
+  "description": "Fundación para el tratamiento y prevención de las adicciones. Más de 20 años acompañando personas y familias en Córdoba, Argentina.",
+  "url": "https://fundacionporunmundomejor.org.ar",
+  "logo": "https://fundacionporunmundomejor.org.ar/favicon.svg",
+  "medicalSpecialty": "Psychiatry",
+  "address": {
+    "@type": "PostalAddress",
+    // TODO: verificar dirección antes de publicar
+    "streetAddress": "27 de Abril 616",
+    "addressLocality": "Córdoba",
+    "addressRegion": "Córdoba",
+    "postalCode": "5000",
+    "addressCountry": "AR"
+  },
+  "telephone": "+5493516716580", // TODO: verificar teléfono antes de publicar
+  "sameAs": [
+    "https://www.instagram.com/fundacion.porunmundomejor/",
+    "https://www.facebook.com/fundacionporunmundomejor/"
+  ]
+};
+
+const stats = [
+  { value: '20+', label: 'años de trayectoria', iconName: 'Building2' },
+  { value: '5', label: 'modalidades de tratamiento', iconName: 'LayoutGrid' },
+  // TODO: confirmar con la fundación si la duración total estimada del proceso integral cambia ahora que no hay internación
+  { value: '9-12', label: 'meses de proceso integral estimado', iconName: 'Clock' },
+  { value: '100%', label: 'confidencialidad garantizada', iconName: 'Lock' },
+];
+
+const programs = [
+  {
+    title: 'Admisión',
+    description: 'Tres entrevistas de evaluación psicológica y psiquiátrica para definir el diagnóstico y el plan de tratamiento más adecuado a cada situación.',
+    href: '/programas/admision',
+    iconName: 'ClipboardCheck',
+    badge: 'Primer paso',
+  },
+  {
+    title: 'Hospital de Día',
+    description: 'Jornada completa de 8 horas, espacio intensivo de reinserción social y laboral: capacitación práctica, micro-emprendimientos, deporte y psicoterapia.',
+    href: '/programas/hospital-de-dia',
+    iconName: 'Sun',
+    duration: '6 meses',
+  },
+  {
+    title: 'Psicoterapia Multifamiliar',
+    description: 'Programa de mínimo 12 módulos para familiares. Espacio para repensar el vínculo con el paciente y construir una alianza terapéutica real.',
+    href: '/programas/psicoterapia-multifamiliar',
+    iconName: 'Users',
+    badge: 'Para familias',
+  },
+  {
+    title: 'Tratamiento Ambulatorio',
+    description: 'Acompañamiento en el propio entorno familiar con tres espacios semanales: psicoterapia grupal, individual/familiar y multifamiliar.',
+    href: '/programas/tratamiento-ambulatorio',
+    iconName: 'Activity',
+    duration: '3-6 meses',
+  },
+  {
+    title: 'Orientación Familiar',
+    description: 'Encuentros quincenales para familias preocupadas por un ser querido, incluso cuando el paciente aún no está listo para iniciar un tratamiento.',
+    href: '/programas/orientacion-familiar',
+    iconName: 'HeartHandshake',
+    badge: 'Sin turno previo',
+  },
+];
+
+const testimonials = [
+  {
+    text: '"Llegué sin saber qué esperar. Lo que encontré fue un equipo que me escuchó sin juzgarme y me ayudó a entender qué me estaba pasando. Hoy tengo otra vida."',
+    source: 'Persona egresada del programa — experiencia ilustrativa',
+  },
+  {
+    text: '"Como familiar, siempre sentí que también había un espacio para mí. El grupo de familias me cambió la forma de ver a mi hijo y la forma de acompañarlo."',
+    source: 'Familiar participante — experiencia ilustrativa',
+  },
+  {
+    text: '"El Hospital de Día y los talleres me permitieron recuperar una rutina y un proyecto propio, volviendo a mi casa cada día. El equipo estuvo en cada paso."',
+    source: 'Persona en proceso — experiencia ilustrativa',
+  },
+];
+
+// Íconos para los tres ejes institucionales
+const objetivos = [
+  {
+    iconPaths: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>`,
+    title: 'Prevención',
+    description: 'Evitar el ingreso al consumo de drogas y alcohol mediante voluntariados barriales, trabajo comunitario con niñez y adolescencia vulnerable, orientación familiar e inclusión sociolaboral de jóvenes.',
+  },
+  {
+    iconPaths: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>`,
+    title: 'Asistencia',
+    description: 'Recuperación integral —física, psíquica, intelectual y social— de las personas afectadas por el consumo. Detección precoz, intervención oportuna y reducción de daños.',
+  },
+  {
+    iconPaths: `<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/>`,
+    title: 'Formación',
+    description: 'Investigación y capacitación sobre la problemática adictiva, producción de conocimiento y divulgación comunitaria. Unidad de prácticas supervisadas de la UNC y la UPC.',
+  },
+];
+---
+
+<PageLayout
+  title="Inicio"
+  description="Fundación para el tratamiento y prevención de las adicciones en Córdoba, Argentina. Más de 20 años acompañando personas y familias hacia una vida plena."
+  schema={homeSchema}
+>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden min-h-[88vh] flex items-center" style="background: #0a1a14;">
+
+    <!-- Imagen de fondo — foto a plena luminosidad, overlay mínimo solo donde está el texto -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="/images/hero-terapia.jpg"
+        alt="Ronda de terapia grupal en la Fundación Por Un Mundo Mejor"
+        class="w-full h-full object-cover"
+        loading="eager"
+      />
+      <!-- Solo un vélo muy suave en la franja izquierda para legibilidad del texto -->
+      <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(4,18,12,0.38) 0%, rgba(4,18,12,0.10) 38%, transparent 60%);"></div>
+    </div>
+
+    <!-- Blobs decorativos (muy suaves para no tapar foto) -->
+    <div class="blob w-[36rem] h-[36rem] -top-32 -right-32" style="background: var(--gradient-iso); opacity: 0.06;"></div>
+    <div class="blob w-72 h-72 -bottom-20 -left-20" style="background: oklch(0.68 0.09 185); opacity: 0.05;"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+      <div class="max-w-3xl">
+
+        <!-- Eyebrow badge -->
+        <!-- Badge: fondo blanco sólido para contraste real contra la foto -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 text-sm font-semibold" style="background: oklch(1 0 0 / 0.92); border: 1px solid oklch(1 0 0 / 0.6); color: oklch(0.35 0.09 165);">
+          <span class="w-2 h-2 rounded-full animate-pulse-soft" style="background: var(--primary);"></span>
+          Más de 20 años en Córdoba, Argentina
+        </div>
+
+        <!-- text-shadow en el título para legibilidad sobre la foto luminosa -->
+        <h1 class="font-fraunces font-black text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6 text-white" style="text-shadow: 0 2px 20px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.4);">
+          Acompañamos a personas y familias a recuperar
+          <!-- Verde menta brillante y claro para contraste contra plantas oscuras del fondo -->
+          <span class="block" style="color: #7DDBC0; -webkit-text-fill-color: #7DDBC0; text-shadow: 0 2px 20px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.4);">
+            el gobierno de su propia vida.
+          </span>
+        </h1>
+
+        <p class="text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl" style="color: oklch(1 0 0 / 0.90); text-shadow: 0 1px 8px rgba(0,0,0,0.5);">
+          La Fundación Por Un Mundo Mejor acompaña a personas y familias afectadas por el consumo problemático de sustancias hacia la recuperación, la autonomía y la construcción de un proyecto de vida propio.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/contacto" class="btn-primary">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+            Iniciar un tratamiento
+          </a>
+          <a href="/familias" class="btn-ghost-light">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Soy familiar
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Wave bottom -->
+    <div class="absolute bottom-0 left-0 right-0 z-10" style="color: var(--background);">
+      <svg viewBox="0 0 1440 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-12 sm:h-16">
+        <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ESTADÍSTICAS
+  ════════════════════════════════════════════════════════════ -->
+  <section class="section-py section-plain">
+    <div class="container-6xl">
+      <div class="text-center mb-10">
+        <div class="eyebrow mb-4">
+          <span class="eyebrow-dot"></span>
+          En números
+        </div>
+        <h2 class="font-fraunces font-bold text-3xl sm:text-4xl" style="color: var(--foreground);">
+          Dos décadas de compromiso real
+        </h2>
+      </div>
+      <StatCounter stats={stats} />
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       OBJETIVOS INSTITUCIONALES
+  ════════════════════════════════════════════════════════════ -->
+  <section class="section-py section-soft">
+    <div class="container-6xl">
+      <div class="text-center mb-14">
+        <div class="eyebrow mb-4">
+          <span class="eyebrow-dot"></span>
+          Nuestra misión
+        </div>
+        <h2 class="font-fraunces font-bold text-3xl sm:text-4xl mb-4" style="color: var(--foreground);">
+          Tres ejes de trabajo
+        </h2>
+        <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--muted-fg);">
+          La Fundación trabaja de manera integrada en la prevención, la asistencia y la formación.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {objetivos.map((obj) => (
+          <div class="group card-base text-center">
+            <div
+              class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300"
+              style="background: var(--gradient-iso); box-shadow: var(--shadow-primary);"
+            >
+              <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" set:html={obj.iconPaths} />
+            </div>
+            <h3 class="font-fraunces font-bold text-xl mb-3" style="color: var(--foreground);">{obj.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-fg);">{obj.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/nosotros" class="inline-flex items-center gap-2 font-bold transition-colors" style="color: var(--primary);">
+          Conocer más sobre nosotros
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PROGRAMAS
+  ════════════════════════════════════════════════════════════ -->
+  <section class="section-py section-plain">
+    <div class="container-6xl">
+      <div class="text-center mb-14">
+        <div class="eyebrow mb-4">
+          <span class="eyebrow-dot"></span>
+          Modalidades
+        </div>
+        <h2 class="font-fraunces font-bold text-3xl sm:text-4xl mb-4" style="color: var(--foreground);">
+          Cinco formas de acompañarte
+        </h2>
+        <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--muted-fg);">
+          Cada persona tiene una situación única. Por eso ofrecemos distintas modalidades que se adaptan al momento y las necesidades de cada caso.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {programs.map((prog) => (
+          <ProgramCard {...prog} />
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/programas" class="btn-primary">
+          Ver todos los programas
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       TESTIMONIOS
+  ════════════════════════════════════════════════════════════ -->
+  <section class="section-py section-mint relative overflow-hidden">
+    <!-- Blob decorativo -->
+    <div class="blob w-72 h-72 -top-16 -right-16" style="opacity: 0.12;"></div>
+
+    <div class="container-6xl relative z-10">
+      <div class="text-center mb-14">
+        <div class="eyebrow mb-4">
+          <span class="eyebrow-dot"></span>
+          Voces del proceso
+        </div>
+        <h2 class="font-fraunces font-bold text-3xl sm:text-4xl mb-3" style="color: var(--foreground);">
+          Lo que transformó vidas
+        </h2>
+        <p class="text-xs" style="color: var(--muted-fg);">
+          * Los testimonios son representativos del tipo de experiencias que acompañamos y no corresponden a personas reales identificables.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {testimonials.map((t) => (
+          <div class="card-base flex flex-col">
+            <svg class="w-8 h-8 mb-4 flex-shrink-0" style="color: var(--primary); opacity: 0.4;" fill="currentColor" viewBox="0 0 32 32">
+              <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/>
+            </svg>
+            <p class="text-sm leading-relaxed italic flex-1 mb-4" style="color: var(--foreground);">{t.text}</p>
+            <p class="text-xs" style="color: var(--muted-fg);">{t.source}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CTA FINAL
+  ════════════════════════════════════════════════════════════ -->
+  <section class="section-py section-plain">
+    <div class="container-6xl">
+      <CTASection
+        title="El primer paso es el más difícil. Nosotros te acompañamos."
+        description="Una consulta no te compromete a nada. Es el espacio para entender qué está pasando y qué opciones hay. Toda la información es confidencial."
+        primaryLabel="Solicitar orientación"
+        primaryHref="/contacto"
+        secondaryLabel="Escribir por WhatsApp"
+        secondaryHref="https://wa.me/5493516716580?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20un%20tratamiento"
+        variant="gradient"
+      />
+    </div>
+  </section>
+
+</PageLayout>

@@ -1,0 +1,122 @@
+---
+// /programas/psicoterapia-multifamiliar
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
+import Icon from '../../components/Icon.astro';
+import { Image } from 'astro:assets';
+---
+
+<PageLayout
+  title="Psicoterapia Multifamiliar"
+  description="El programa de Psicoterapia Multifamiliar de la Fundación Por Un Mundo Mejor: mínimo 12 módulos para familiares, para repensar el vínculo con el paciente y construir una alianza terapéutica real."
+>
+  <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">
+    <div class="container-6xl relative z-10">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Programas', href: '/programas' }, { label: 'Psicoterapia Multifamiliar' }]} />
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/20 border border-brand-500/30 flex items-center justify-center text-primary">
+          <Icon name="Users" class="w-7 h-7" />
+        </div>
+        <div>
+          <span class="text-brand-300 text-sm font-semibold">Para familias · Mínimo 12 módulos</span>
+          <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Psicoterapia Multifamiliar</h1>
+        </div>
+      </div>
+      <p class="text-[oklch(1_0_0_/_0.72)] text-lg max-w-2xl">La recuperación no es solo del paciente. La familia que cambia su forma de vincularse es parte activa del proceso de curación.</p>
+    </div>
+  </div>
+
+  <!-- Imagen de cabecera — aspect-ratio 4:3 fijo, corte limpio sin solapamiento -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <div class="w-full rounded-2xl overflow-hidden shadow-card" style="aspect-ratio: 4 / 3;">
+      <Image
+        src="/images/psicoterapia-multifamiliar.jpg"
+        alt="Espacio de encuentro grupal para psicoterapia multifamiliar"
+        width={1200}
+        height={900}
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+
+    <section>
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-4">¿Qué es la Psicoterapia Multifamiliar?</h2>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+        La Psicoterapia Multifamiliar es un <strong>programa de trabajo grupal con familias</strong> de personas en tratamiento. En un mismo espacio, varias familias —que atraviesan situaciones similares— se reúnen con el equipo terapéutico para reflexionar, compartir experiencias y trabajar los vínculos que rodean el proceso de recuperación.
+      </p>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+        El eje central no es hablar del paciente, sino de la propia familia: qué lugar ocupa cada uno, cómo se comunican, qué expectativas se ponen en juego y cómo construir una alianza real con el equipo terapéutico.
+      </p>
+    </section>
+
+    <section class="bg-brand-50 dark:bg-brand-950/30 border border-brand-100 dark:border-brand-900 rounded-2xl p-7">
+      <h2 class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-4">¿Por qué la familia también necesita un espacio propio?</h2>
+      <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-3">
+        Convivir con una persona con consumo problemático genera patrones relacionales que, aunque nacen del amor y la preocupación, pueden inadvertidamente dificultar el proceso de recuperación: la sobreprotección, la vigilancia constante, la tendencia a "hacer por" en vez de "acompañar a", o la negación del problema.
+      </p>
+      <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+        El espacio multifamiliar no juzga esas actitudes: las trabaja con cuidado, reconociendo que nacen del amor. El objetivo es que la familia pueda convertirse en un recurso activo del proceso de cambio, en vez de quedar atrapada en dinámicas que lo dificultan.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-6">¿Cómo funciona?</h2>
+      <div class="space-y-4">
+        {[
+          { title: 'Frecuencia', content: 'Los módulos se realizan con frecuencia semanal o quincenal, según la etapa del tratamiento del familiar en proceso.' },
+          { title: 'Duración', content: 'El programa comprende un mínimo de 12 módulos. Cada encuentro dura aproximadamente 90 minutos.' },
+          { title: 'Formato', content: 'Grupo de múltiples familias (no solo una familia a la vez), con coordinación del equipo terapéutico. La co-presencia de otras familias en situaciones similares es uno de los elementos terapéuticos más potentes.' },
+          { title: 'Participantes', content: 'Pueden participar padres, madres, hermanos/as, parejas, hijos/as mayores y cualquier referente afectivo significativo para el paciente.' },
+          { title: 'Confidencialidad', content: 'Todo lo que se comparte en el espacio es confidencial y no sale del grupo. Esto permite un nivel de apertura que sería difícil en otro contexto.' },
+        ].map((item) => (
+          <div class="flex gap-4 p-5 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800">
+            <span class="font-heading font-bold text-brand-600 dark:text-brand-400 text-sm w-28 flex-shrink-0">{item.title}</span>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{item.content}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-5">Qué se trabaja en cada módulo</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          'Roles y dinámicas familiares alrededor del consumo',
+          'Comunicación: cómo decir lo que se siente sin atacar ni rendirse',
+          'Límites afectivos: qué es cuidar y qué es habilitar',
+          'El propio malestar de la familia: el desgaste, la culpa, el miedo',
+          'Construcción de alianza con el equipo terapéutico',
+          'Expectativas y proceso: aprender a caminar junto sin cargar solo',
+        ].map((tema) => (
+          <div class="flex items-start gap-3 p-4 bg-white dark:bg-gray-900 rounded-lg border border-gray-100 dark:border-gray-800">
+            <span class="w-2 h-2 rounded-full bg-brand-500 flex-shrink-0 mt-1.5"></span>
+            <span class="text-sm text-gray-700 dark:text-gray-300">{tema}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <CTASection
+      title="¿Querés sumarte al espacio multifamiliar?"
+      description="Podés comenzar el programa aunque tu familiar todavía no esté en tratamiento. Consultanos."
+      primaryLabel="Consultar ahora"
+      primaryHref="/contacto"
+      secondaryLabel="WhatsApp"
+      secondaryHref="https://wa.me/5493516716580?text=Hola%2C%20quiero%20saber%20sobre%20el%20espacio%20multifamiliar"
+      variant="gradient"
+    />
+
+    <RelatedPages
+      pages={[
+        { title: 'Orientación Familiar', href: '/programas/orientacion-familiar', description: 'Un primer paso para familias preocupadas, antes del multifamiliar.', iconName: 'HeartHandshake' },
+        { title: 'Para Familias', href: '/familias', description: 'Guía completa para familias que buscan cómo acompañar.', iconName: 'Users' },
+        { title: 'Tratamiento Ambulatorio', href: '/programas/tratamiento-ambulatorio', description: 'El programa que incluye espacio multifamiliar regular.', iconName: 'Activity' },
+      ]}
+    />
+  </div>
+</PageLayout>

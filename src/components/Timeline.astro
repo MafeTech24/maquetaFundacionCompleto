@@ -1,0 +1,34 @@
+---
+// Timeline.astro — Línea de tiempo vertical
+export interface Props {
+  items: { year?: string; step?: string; title: string; description: string }[];
+  variant?: 'years' | 'steps';
+}
+const { items, variant = 'years' } = Astro.props;
+---
+
+<div class="relative">
+  <!-- Vertical line -->
+  <div class="absolute left-6 top-0 bottom-0 w-0.5 rounded-full" style="background: var(--gradient-iso); opacity: 0.4;"></div>
+
+  <div class="space-y-8">
+    {items.map((item) => (
+      <div class="relative flex items-start gap-6 pl-16">
+        <!-- Dot -->
+        <div
+          class="absolute left-0 flex items-center justify-center w-12 h-12 rounded-2xl text-white shadow-md flex-shrink-0 z-10"
+          style="background: var(--gradient-iso); box-shadow: var(--shadow-primary);"
+        >
+          <span class="font-fraunces font-bold text-xs text-center leading-tight">
+            {variant === 'years' ? item.year : item.step}
+          </span>
+        </div>
+        <!-- Content -->
+        <div class="flex-1 pt-2 pb-2">
+          <h3 class="font-fraunces font-bold text-base leading-snug mb-1" style="color: var(--foreground);">{item.title}</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--muted-fg);">{item.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

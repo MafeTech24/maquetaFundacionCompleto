@@ -1,0 +1,84 @@
+---
+// /aviso-legal
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<PageLayout
+  title="Aviso Legal"
+  description="Aviso legal y términos de uso del sitio web de la Fundación Por Un Mundo Mejor. Información sobre el carácter no sustitutivo de la consulta profesional."
+>
+  <div class="relative overflow-hidden py-16" style="background: var(--gradient-hero);">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Aviso Legal' }]} />
+      <h1 class="font-sora font-extrabold text-3xl sm:text-4xl text-white">Aviso Legal</h1>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="prose dark:prose-invert max-w-none prose-headings:font-sora prose-a:text-brand-600 dark:prose-a:text-brand-400">
+
+      <div class="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-xl p-6 not-prose mb-8">
+        <p class="text-amber-900 dark:text-amber-300 font-semibold text-base mb-2">⚠️ Aviso importante sobre la naturaleza de este sitio</p>
+        <p class="text-amber-800 dark:text-amber-400 text-sm leading-relaxed">
+          La información contenida en este sitio web tiene carácter exclusivamente informativo y divulgativo. <strong>No reemplaza, ni sustituye, ni equivale a una consulta, diagnóstico o tratamiento profesional</strong> en salud mental o cualquier otra área médica.
+        </p>
+      </div>
+
+      <h2>1. Titularidad del sitio</h2>
+      <p>
+        El presente sitio web es propiedad y está operado por la <strong>Fundación Por Un Mundo Mejor</strong>, organización sin fines de lucro con sede en la ciudad de Córdoba, provincia de Córdoba, República Argentina.
+      </p>
+
+      <h2>2. Carácter informativo del contenido</h2>
+      <p>
+        Todo el contenido publicado en este sitio —artículos, descripciones de programas, información sobre el equipo y materiales de divulgación— tiene exclusivamente carácter informativo y educativo. La Fundación Por Un Mundo Mejor hace todos los esfuerzos razonables para mantener la información actualizada y precisa, pero no garantiza la exactitud, integridad o actualidad de ningún contenido en particular.
+      </p>
+
+      <h2>3. No sustitución de la consulta profesional</h2>
+      <p>
+        Ninguna información contenida en este sitio web debe interpretarse como consejo médico, psicológico, legal o de cualquier otra naturaleza profesional. Ante cualquier situación relacionada con la salud mental, el consumo de sustancias o cualquier otra condición de salud, se recomienda consultar a un profesional habilitado.
+      </p>
+      <p>
+        Si se encuentra en una situación de urgencia, llamar al:
+      </p>
+      <ul>
+        <li><strong>141</strong> — Línea de SEDRONAR (Secretaría de Políticas Integrales sobre Drogas de la Nación Argentina). Gratuita, disponible las 24 horas, los 365 días del año.</li>
+        <li><strong>107</strong> — Emergencias médicas (SAME).</li>
+        <li><strong>911</strong> — Emergencias policiales y urgencias generales.</li>
+      </ul>
+
+      <h2>4. Testimonios</h2>
+      <p>
+        Los testimonios que aparecen en este sitio web son de carácter ilustrativo y representan el tipo de experiencias que acompañamos en la fundación. No corresponden a personas reales identificables ni contienen datos personales de pacientes actuales o pasados.
+      </p>
+
+      <h2>5. Propiedad intelectual</h2>
+      <p>
+        Los contenidos de este sitio web, incluyendo textos, diseño, imágenes y elementos gráficos, son propiedad de la Fundación Por Un Mundo Mejor o cuentan con las autorizaciones correspondientes para su uso. Queda prohibida su reproducción total o parcial sin autorización expresa y escrita.
+      </p>
+
+      <h2>6. Limitación de responsabilidad</h2>
+      <p>
+        La Fundación Por Un Mundo Mejor no será responsable de ningún daño o perjuicio derivado del uso de la información contenida en este sitio, de la imposibilidad de acceder al mismo o de la presencia de virus u otros elementos que puedan afectar los sistemas informáticos de los usuarios.
+      </p>
+
+      <h2>7. Links a sitios externos</h2>
+      <p>
+        Este sitio puede contener enlaces a sitios web de terceros. La Fundación Por Un Mundo Mejor no se responsabiliza por el contenido, la veracidad o la privacidad de esos sitios.
+      </p>
+
+      <h2>8. Modificaciones</h2>
+      <p>
+        La Fundación se reserva el derecho de modificar el presente aviso legal en cualquier momento. Se recomienda revisarlo periódicamente.
+      </p>
+
+      <h2>9. Jurisdicción</h2>
+      <p>
+        El presente sitio web se rige por la legislación argentina. Para cualquier controversia, las partes se someten a los tribunales de la ciudad de Córdoba, provincia de Córdoba, República Argentina.
+      </p>
+
+      <p class="text-sm text-gray-500 mt-8">Última actualización: 2024. Consultas sobre este aviso: escribinos por <a href="https://wa.me/5493516716580">WhatsApp</a> o a través de <a href="/contacto">nuestro formulario de contacto</a>.</p>
+    </div>
+  </div>
+</PageLayout>

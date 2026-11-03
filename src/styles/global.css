@@ -1,0 +1,368 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN TOKENS — OKLCH
+   Fundación Por Un Mundo Mejor
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* Backgrounds */
+    --background:        oklch(0.995 0.004 174);
+    --foreground:        oklch(0.28 0.045 250);
+    --card:              oklch(1 0 0);
+
+    /* Brand */
+    --primary:           oklch(0.56 0.075 190);
+    --primary-fg:        oklch(0.99 0.005 180);
+    --secondary:         oklch(0.93 0.045 165);
+    --secondary-fg:      oklch(0.32 0.05 200);
+
+    /* Muted / accent */
+    --muted:             oklch(0.96 0.012 180);
+    --muted-fg:          oklch(0.52 0.03 225);
+    --accent:            oklch(0.9 0.06 168);
+    --accent-fg:         oklch(0.3 0.05 210);
+
+    /* Extras */
+    --mint:              oklch(0.87 0.07 160);
+    --navy:              oklch(0.28 0.045 250);
+    --sand:              oklch(0.97 0.015 90);
+    --border:            oklch(0.91 0.018 190);
+
+    /* Gradients */
+    --gradient-iso:      linear-gradient(135deg, oklch(0.87 0.07 160), oklch(0.56 0.075 190));
+    --gradient-soft:     linear-gradient(180deg, oklch(0.97 0.02 172), oklch(0.995 0.004 174));
+    --gradient-hero:     linear-gradient(135deg, oklch(0.22 0.055 250) 0%, oklch(0.18 0.045 220) 50%, oklch(0.14 0.04 190) 100%);
+
+    /* Shadows */
+    --shadow-soft:       0 18px 40px -24px oklch(0.4 0.06 210 / 0.35);
+    --shadow-card:       0 2px 4px -2px oklch(0.4 0.06 210 / 0.15), 0 12px 28px -18px oklch(0.4 0.06 210 / 0.3);
+    --shadow-primary:    0 8px 24px -8px oklch(0.56 0.075 190 / 0.45);
+  }
+
+  /* ── Dark mode ───────────────────────────────────────────── */
+  .dark {
+    --background:        oklch(0.14 0.025 240);
+    --foreground:        oklch(0.93 0.012 200);
+    --card:              oklch(0.18 0.025 240);
+
+    --primary:           oklch(0.68 0.09 185);
+    --primary-fg:        oklch(0.12 0.02 220);
+    --secondary:         oklch(0.22 0.035 200);
+    --secondary-fg:      oklch(0.85 0.04 180);
+
+    --muted:             oklch(0.2 0.02 230);
+    --muted-fg:          oklch(0.6 0.025 210);
+    --accent:            oklch(0.25 0.04 195);
+    --accent-fg:         oklch(0.88 0.05 175);
+
+    --mint:              oklch(0.3 0.05 185);
+    --navy:              oklch(0.12 0.03 240);
+    --sand:              oklch(0.2 0.015 230);
+    --border:            oklch(0.26 0.03 220);
+
+    --gradient-soft:     linear-gradient(180deg, oklch(0.16 0.025 235), oklch(0.14 0.025 240));
+    --shadow-soft:       0 18px 40px -24px oklch(0.05 0.02 220 / 0.7);
+    --shadow-card:       0 2px 4px -2px oklch(0.05 0.02 220 / 0.4), 0 12px 28px -18px oklch(0.05 0.02 220 / 0.6);
+    --shadow-primary:    0 8px 24px -8px oklch(0.68 0.09 185 / 0.35);
+  }
+
+  /* ── Base typography ─────────────────────────────────────── */
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── Focus visible (accesible) ───────────────────────────── */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* ── Scroll margin ───────────────────────────────────────── */
+  * {
+    scroll-margin-top: 80px;
+  }
+}
+
+/* ============================================================
+   COMPONENT UTILITIES
+   ============================================================ */
+
+@layer components {
+
+  /* ── Eyebrow / pill badge ────────────────────────────────── */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.875rem;
+    background: var(--card);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    color: var(--primary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 9999px;
+    background: var(--primary);
+    flex-shrink: 0;
+  }
+
+  /* ── Buttons ─────────────────────────────────────────────── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: var(--primary);
+    color: var(--primary-fg);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    border-radius: 9999px;
+    box-shadow: var(--shadow-primary);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: color-mix(in oklch, var(--card) 70%, transparent);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    border-radius: 9999px;
+    border: 1.5px solid color-mix(in oklch, var(--primary) 40%, transparent);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(8px);
+  }
+  .btn-outline:hover {
+    background: color-mix(in oklch, var(--primary) 10%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: oklch(1 0 0 / 0.12);
+    color: oklch(1 0 0);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    border-radius: 9999px;
+    border: 1.5px solid oklch(1 0 0 / 0.25);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(8px);
+  }
+  .btn-ghost-light:hover {
+    background: oklch(1 0 0 / 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* ── Card ────────────────────────────────────────────────── */
+  .card-base {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-base:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* ── Blob decorativo ─────────────────────────────────────── */
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    background: var(--gradient-iso);
+    filter: blur(80px);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Section padding ─────────────────────────────────────── */
+  .section-py {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  @media (min-width: 768px) {
+    .section-py {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+
+  /* ── Section backgrounds ─────────────────────────────────── */
+  .section-plain {
+    background: var(--background);
+  }
+  .section-soft {
+    background: var(--gradient-soft);
+  }
+  .section-mint {
+    background: color-mix(in oklch, var(--secondary) 50%, var(--background));
+  }
+  .section-card {
+    background: var(--card);
+  }
+
+  /* ── Max-width container ─────────────────────────────────── */
+  .container-6xl {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-6xl {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-6xl {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  /* ── Prose (blog / recursos) ─────────────────────────────── */
+  .prose h2 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    @apply font-bold text-2xl mt-10 mb-4;
+    color: var(--foreground);
+  }
+  .prose h3 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    @apply font-semibold text-xl mt-8 mb-3;
+    color: var(--foreground);
+  }
+  .prose p {
+    @apply leading-relaxed mb-4;
+    color: var(--muted-fg);
+  }
+  .prose ul {
+    @apply space-y-2 my-4;
+  }
+  .prose li {
+    @apply leading-relaxed;
+    color: var(--muted-fg);
+  }
+  .prose strong {
+    @apply font-semibold;
+    color: var(--foreground);
+  }
+  .prose blockquote {
+    border-left: 4px solid var(--primary);
+    @apply pl-6 italic my-6;
+    color: var(--muted-fg);
+  }
+  .prose hr {
+    border-color: var(--border);
+    @apply my-8;
+  }
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+@layer utilities {
+  .font-fraunces,
+  .font-sora,
+  .font-heading,
+  .font-jakarta {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  .font-nunito,
+  .font-inter,
+  .font-sans {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Animaciones */
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  .slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-iso);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Color utilities mapeadas a CSS vars */
+  .text-primary   { color: var(--primary); }
+  .text-secondary { color: var(--secondary-fg); }
+  .text-muted     { color: var(--muted-fg); }
+  .text-foreground { color: var(--foreground); }
+  .bg-primary     { background-color: var(--primary); }
+  .bg-card        { background-color: var(--card); }
+  .bg-muted       { background-color: var(--muted); }
+  .border-border  { border-color: var(--border); }
+}

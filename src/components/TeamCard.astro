@@ -1,0 +1,29 @@
+---
+// TeamCard.astro — Card de miembro del equipo con avatar de iniciales
+export interface Props {
+  name: string;
+  role: string;
+  area: string;
+  initials: string;
+  color?: string;
+}
+const { name, role, area, initials } = Astro.props;
+---
+
+<div class="group flex flex-col items-center text-center card-base py-8">
+  <!-- Avatar con iniciales -->
+  <div
+    class="w-20 h-20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-all duration-300"
+    style="background: var(--gradient-iso); box-shadow: var(--shadow-primary);"
+  >
+    <span class="font-fraunces font-bold text-xl text-white">{initials}</span>
+  </div>
+  <h3 class="font-fraunces font-bold text-base leading-snug" style="color: var(--foreground);">{name}</h3>
+  <p class="text-sm font-semibold mt-0.5" style="color: var(--primary);">{role}</p>
+  <span
+    class="mt-2 text-xs px-3 py-1 rounded-full font-medium"
+    style="background: color-mix(in oklch, var(--secondary) 60%, transparent); color: var(--secondary-fg);"
+  >
+    {area}
+  </span>
+</div>

@@ -1,0 +1,140 @@
+---
+// /programas/tratamiento-ambulatorio
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
+import Icon from '../../components/Icon.astro';
+import { Image } from 'astro:assets';
+---
+
+<PageLayout
+  title="Tratamiento Ambulatorio"
+  description="El Tratamiento Ambulatorio de la Fundación Por Un Mundo Mejor: acompañamiento en el entorno familiar con tres espacios semanales de psicoterapia grupal, individual/familiar y multifamiliar."
+>
+  <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">
+    <div class="container-6xl relative z-10">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Programas', href: '/programas' }, { label: 'Tratamiento Ambulatorio' }]} />
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/20 border border-brand-500/30 flex items-center justify-center text-primary">
+          <Icon name="Activity" class="w-7 h-7" />
+        </div>
+        <div>
+          <span class="text-brand-300 text-sm font-semibold">3 espacios semanales · 3–6 meses</span>
+          <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Tratamiento Ambulatorio</h1>
+        </div>
+      </div>
+      <p class="text-[oklch(1_0_0_/_0.72)] text-lg max-w-2xl">La vida cotidiana como contexto del tratamiento. Sin abandonar el entorno, con el acompañamiento de nuestro equipo en tres momentos semanales clave.</p>
+    </div>
+  </div>
+
+  <!-- Imagen de cabecera — aspect-ratio 4:3 fijo, corte limpio sin solapamiento -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <div class="w-full rounded-2xl overflow-hidden shadow-card" style="aspect-ratio: 4 / 3;">
+      <Image
+        src="/images/tratamiento-ambulatorio.jpg"
+        alt="Actividad de taller como parte del acompañamiento sostenido"
+        width={1200}
+        height={900}
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+
+    <section>
+      <h2 class="font-sora font-bold text-2xl text-gray-900 dark:text-white mb-4">¿Qué es el Tratamiento Ambulatorio?</h2>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+        El Tratamiento Ambulatorio es un programa que permite a la persona <strong>mantener su vida cotidiana</strong> —en su hogar, con su familia, en su trabajo o estudio— mientras recibe acompañamiento terapéutico regular del equipo de la fundación.
+      </p>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+        No requiere asistencia de jornada completa, pero sí una presencia semanal comprometida en tres espacios terapéuticos complementarios.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-6">Los tres espacios semanales</h2>
+      <div class="space-y-4">
+        {[
+          {
+            num: '1',
+            title: 'Psicoterapia grupal',
+            desc: 'Encuentro con otras personas en proceso similar. El grupo funciona como espejo, como red de sostén y como espacio de práctica de nuevas formas de relacionarse. La escucha de otros y la propia voz compartida son instrumentos centrales del cambio.',
+            icon: 'MessageSquare',
+          },
+          {
+            num: '2',
+            title: 'Psicoterapia individual o familiar',
+            desc: 'Espacio personalizado para trabajar la historia personal, los vínculos familiares clave y los objetivos específicos de cada proceso. Según el momento y la situación, puede ser individual o incluir a algún familiar significativo.',
+            icon: 'User',
+          },
+          {
+            num: '3',
+            title: 'Psicoterapia multifamiliar',
+            desc: 'Espacio grupal para las familias de quienes están en tratamiento. Permite trabajar las dinámicas familiares que rodean el consumo y construir una alianza activa entre la familia y el equipo terapéutico.',
+            icon: 'Users',
+          },
+        ].map((espacio) => (
+          <div class="flex gap-5 p-6 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 items-start">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-teal-600 text-white font-heading font-bold flex items-center justify-center flex-shrink-0 text-sm">
+              {espacio.num}
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-primary"><Icon name={espacio.icon} class="w-4 h-4" /></span>
+                <h3 class="font-heading font-semibold text-base text-gray-900 dark:text-white">{espacio.title}</h3>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{espacio.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-4">¿A quién está dirigido?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          { icon: 'Home', text: 'Personas que conservan inserción social (trabajo, estudio, vínculos afectivos estables) y cuyo entorno familiar puede ofrecer contención.' },
+          { icon: 'TrendingDown', text: 'Personas con consumo problemático moderado que no requieren la intensidad de una jornada completa.' },
+          { icon: 'Clock', text: 'Personas que egresaron del Hospital de Día y están en la etapa final de consolidación del proceso (Plan A, Etapa 2).' },
+          { icon: 'Sprout', text: 'Personas en el Plan B: quienes conservan inserción social y pueden iniciar directamente con ambulatorio, con o sin supervisión familiar.' },
+        ].map((item) => (
+          <div class="flex gap-4 p-5 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 items-start">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: color-mix(in oklch, var(--primary) 12%, var(--background)); color: var(--primary);">
+              <Icon name={item.icon} class="w-5 h-5" />
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed pt-1">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="bg-brand-50 dark:bg-brand-950/30 border border-brand-100 dark:border-brand-900 rounded-xl p-6">
+      <h3 class="font-heading font-bold text-lg text-gray-900 dark:text-white mb-2">Duración y flexibilidad</h3>
+      <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+        El programa tiene una duración de <strong>3 a 6 meses</strong>, con evaluaciones periódicas que permiten ajustar la frecuencia e intensidad según el avance de cada persona. Es la modalidad de tratamiento más flexible en cuanto a formato, y la que mayor integración permite con la vida cotidiana.
+      </p>
+    </div>
+
+    <CTASection
+      title="¿El ambulatorio es la opción para tu situación?"
+      description="Consultanos sin compromiso. Si la situación lo requiere, el equipo puede orientarte hacia la modalidad más adecuada."
+      primaryLabel="Solicitar orientación"
+      primaryHref="/contacto"
+      secondaryLabel="WhatsApp"
+      secondaryHref="https://wa.me/5493516716580?text=Hola%2C%20quiero%20saber%20sobre%20el%20Tratamiento%20Ambulatorio"
+      variant="gradient"
+    />
+
+    <RelatedPages
+      pages={[
+        { title: 'Planes de Tratamiento', href: '/planes-de-tratamiento', description: 'Ver cómo el ambulatorio se integra en el Plan A, B y C.', iconName: 'ClipboardCheck' },
+        { title: 'Hospital de Día', href: '/programas/hospital-de-dia', description: 'Programa de jornada completa (8 horas) para reinserción social.', iconName: 'Sun' },
+        { title: 'Admisión', href: '/programas/admision', description: 'El proceso de evaluación para definir qué modalidad es la indicada.', iconName: 'ClipboardCheck' },
+      ]}
+    />
+  </div>
+</PageLayout>

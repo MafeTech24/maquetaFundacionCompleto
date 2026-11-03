@@ -1,0 +1,258 @@
+---
+// /familias — Página empática para familias
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Accordion from '../components/Accordion.astro';
+import CTASection from '../components/CTASection.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import { Image } from 'astro:assets';
+
+const faqs = [
+  {
+    question: '¿Qué hago si mi familiar niega que tiene un problema?',
+    answer: 'La negación es una etapa común en el proceso. No es mentira ni manipulación: es una forma de protegerse de algo que duele reconocer. En ese momento, forzar la confrontación suele empeorar las cosas. El espacio de <strong>Orientación Familiar</strong> está diseñado exactamente para esta situación: te ayudamos a entender qué está pasando y cómo hablar sin que la conversación termine en un conflicto mayor.',
+  },
+  {
+    question: '¿Puedo iniciar el proceso aunque mi familiar no quiera venir?',
+    answer: 'Sí. El programa de <strong>Orientación Familiar</strong> está pensado para que la familia pueda comenzar su propio proceso aunque el ser querido todavía no esté listo. No es necesario que participen para que vos empieces a recibir orientación y herramientas.',
+  },
+  {
+    question: '¿Estoy obligado/a a esperar que toque fondo?',
+    answer: 'No. El concepto de "tocar fondo" es útil en algunos contextos pero puede ser peligroso: mientras se espera ese momento, pueden ocurrir consecuencias graves e irreversibles. La intervención temprana, incluso sin que la persona esté "lista", es siempre preferible. El equipo puede orientarte sobre cómo actuar en tu situación específica.',
+  },
+  {
+    question: '¿Qué hago si hay una crisis o una situación de peligro inmediato?',
+    answer: 'Si hay una situación de riesgo inmediato (intoxicación severa, conducta violenta, ideación suicida), llamá al servicio de emergencias más cercano o al <strong>107 (SAME)</strong>. Para situaciones de consumo sin riesgo inmediato, podés comunicarte con nosotros por WhatsApp al <strong>+54 9 351 671-6580</strong>.',
+  },
+  {
+    question: '¿El tratamiento incluye medicación?',
+    answer: 'Dependiendo del caso. La evaluación de admisión incluye una evaluación psiquiátrica que define si el tratamiento requiere apoyo farmacológico. En muchos casos, especialmente en tratamientos ambulatorios, no se requiere medicación. En otros —especialmente cuando hay trastornos duales— puede ser parte del plan de tratamiento.',
+  },
+  {
+    question: '¿Las obras sociales cubren el tratamiento?',
+    answer: 'La fundación mantiene convenios continuos con obras sociales y organismos de gobierno. En la primera consulta podés preguntar específicamente sobre la cobertura disponible para tu obra social. También existe la posibilidad de tratamiento particular o de gestionar cobertura a través de otros organismos.',
+  },
+  {
+    question: '¿Puedo hablar con el equipo sobre la situación de mi familiar sin que él/ella lo sepa?',
+    answer: 'Sí. El espacio de Orientación Familiar está diseñado para eso: es un espacio donde la familia puede consultar, orientarse y trabajar sin que el paciente participe ni sea informado. La confidencialidad es parte central del encuadre.',
+  },
+];
+---
+
+<PageLayout
+  title="Para Familias"
+  description="Guía para familias de personas con consumo problemático: cómo empezar, qué esperar, cómo acompañar sin agotarse. Orientación Familiar y Psicoterapia Multifamiliar explicadas en un tono cercano."
+>
+
+  <!-- Hero interior -->
+  <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">
+    <div class="blob w-80 h-80 -top-20 -right-20" style="opacity: 0.15;"></div>
+    <div class="container-6xl relative z-10">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Para Familias' }]} />
+      <div class="eyebrow mb-4">
+        <span class="eyebrow-dot"></span>
+        Para familias
+      </div>
+      <h1 class="font-fraunces font-black text-4xl sm:text-5xl text-white mb-4">
+        Para Familias
+      </h1>
+      <p class="text-lg max-w-2xl leading-relaxed" style="color: oklch(1 0 0 / 0.72);">
+        Si llegaste hasta acá, probablemente estés preocupado/a por alguien que querés. Estás en el lugar correcto. No tenés que saber qué hacer todavía.
+      </p>
+    </div>
+  </div>
+
+  <!-- Foto familias — aspect-ratio 4:3 fijo, corte limpio sin solapamiento -->
+  <div class="container-6xl pt-8">
+    <div class="w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-card" style="aspect-ratio: 4 / 3;">
+      <Image
+        src="/images/familias.jpg"
+        alt="Familia conversando en un espacio de contención y escucha"
+        width={1200}
+        height={900}
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <div class="container-6xl py-16 space-y-16">
+
+    <!-- Primer párrafo empático con imagen secundaria -->
+    <section>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center rounded-3xl p-8 sm:p-10" style="background: color-mix(in oklch, var(--primary) 8%, var(--background)); border: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);">
+        <div class="lg:col-span-7">
+          <h2 class="font-heading font-bold text-2xl mb-4" style="color: var(--foreground);">Lo más difícil ya lo hiciste</h2>
+          <p class="leading-relaxed mb-4" style="color: var(--muted-fg);">
+            Reconocer que hay un problema y buscar información es el paso más difícil. Muchas familias pasan años sin saber que pueden pedir ayuda para ellas mismas, sin que el ser querido tenga que participar primero.
+          </p>
+          <p class="leading-relaxed mb-4" style="color: var(--muted-fg);">
+            No sabemos exactamente qué está pasando en tu caso. Pero sí sabemos que convivir con el consumo problemático de alguien que querés es agotador, confuso y doloroso. Y que nada de lo que hiciste o dejaste de hacer te convierte en responsable de lo que está pasando.
+          </p>
+          <p class="leading-relaxed" style="color: var(--muted-fg);">
+            Podemos ayudarte. No con fórmulas mágicas ni con promesas de cura instantánea, sino con acompañamiento real, escucha y orientación concreta sobre qué hacer en tu situación.
+          </p>
+        </div>
+        <div class="lg:col-span-5 w-full rounded-2xl overflow-hidden shadow-card" style="aspect-ratio: 4 / 3;">
+          <Image
+            src="/images/familias-secundaria.jpg"
+            alt="Momento de acompañamiento y contención en familia"
+            width={1200}
+            height={900}
+            class="w-full h-full object-cover object-center"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo empezar con imagen terciaria -->
+    <section>
+      <div class="eyebrow mb-4">
+        <span class="eyebrow-dot"></span>
+        Primeros pasos
+      </div>
+      <h2 class="font-heading font-bold text-2xl mb-6" style="color: var(--foreground);">¿Cómo empezar?</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-7 space-y-4">
+          {[
+            {
+              step: '1',
+              title: 'Contactate con nosotros',
+              desc: 'Por WhatsApp al +54 9 351 671-6580 o a través del formulario de contacto. No hace falta saber qué pedir: podés simplemente contar lo que está pasando.',
+              action: { label: 'WhatsApp', href: 'https://wa.me/5493516716580?text=Hola%2C%20soy%20familiar%20y%20necesito%20orientaci%C3%B3n' },
+            },
+            {
+              step: '2',
+              title: 'Primera consulta (sin tu familiar)',
+              desc: 'Un profesional del equipo escucha tu situación, te hace algunas preguntas y te ofrece orientación inicial. Esta instancia es confidencial y no implica ningún compromiso.',
+            },
+            {
+              step: '3',
+              title: 'Evaluamos juntos qué hacer',
+              desc: 'Dependiendo de la situación, el equipo puede recomendarte el programa de Orientación Familiar, asesorarte sobre cómo hablar con tu familiar, o acompañarte en el proceso de acercarlo a un tratamiento.',
+            },
+          ].map((item) => (
+            <div class="card-base flex gap-5">
+              <div
+                class="w-10 h-10 rounded-full text-white font-heading font-bold flex items-center justify-center flex-shrink-0 text-sm"
+                style="background: var(--gradient-iso); box-shadow: var(--shadow-primary);"
+              >
+                {item.step}
+              </div>
+              <div class="flex-1">
+                <h3 class="font-heading font-semibold text-base mb-1" style="color: var(--foreground);">{item.title}</h3>
+                <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-fg);">{item.desc}</p>
+                {item.action && (
+                  <a href={item.action.href} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-bold" style="color: #25d366;">
+                    {item.action.label} →
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="lg:col-span-5 w-full rounded-2xl overflow-hidden shadow-card" style="aspect-ratio: 4 / 3;">
+          <Image
+            src="/images/familias-terciaria.jpg"
+            alt="Espacio de conversación cálido para familias"
+            width={1200}
+            height={900}
+            class="w-full h-full object-cover object-center"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Programas para familias -->
+    <section>
+      <div class="eyebrow mb-4">
+        <span class="eyebrow-dot"></span>
+        Programas
+      </div>
+      <h2 class="font-heading font-bold text-2xl mb-6" style="color: var(--foreground);">Programas pensados para vos</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="card-base">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background: color-mix(in oklch, var(--primary) 12%, var(--background)); color: var(--primary);">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2" style="color: var(--foreground);">Orientación Familiar</h3>
+          <p class="text-sm leading-relaxed mb-4" style="color: var(--muted-fg);">
+            Encuentros quincenales durante 3 a 6 meses. Para cuando el ser querido aún no está en tratamiento. Un espacio de escucha, orientación y herramientas para vos.
+          </p>
+          <a href="/programas/orientacion-familiar" class="inline-flex items-center gap-2 text-sm font-bold" style="color: var(--primary);">
+            Conocer más
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+        <div class="card-base">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background: color-mix(in oklch, var(--primary) 12%, var(--background)); color: var(--primary);">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path stroke-linecap="round" stroke-linejoin="round" d="M23 21v-2a4 4 0 0 0-3-3.87"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2" style="color: var(--foreground);">Psicoterapia Multifamiliar</h3>
+          <p class="text-sm leading-relaxed mb-4" style="color: var(--muted-fg);">
+            Mínimo 12 módulos de trabajo grupal cuando el ser querido ya está en tratamiento. Para repensar el vínculo y construir una alianza real con el equipo.
+          </p>
+          <a href="/programas/psicoterapia-multifamiliar" class="inline-flex items-center gap-2 text-sm font-bold" style="color: var(--primary);">
+            Conocer más
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <div class="eyebrow mb-4">
+        <span class="eyebrow-dot"></span>
+        Preguntas frecuentes
+      </div>
+      <h2 class="font-heading font-bold text-2xl mb-6" style="color: var(--foreground);">Preguntas frecuentes de familias</h2>
+      <Accordion items={faqs} />
+    </section>
+
+    <!-- Emergencia -->
+    <div class="rounded-3xl p-6" style="background: oklch(0.97 0.015 20); border: 1px solid oklch(0.85 0.04 20);">
+      <div class="flex gap-3">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: oklch(0.92 0.06 20); color: oklch(0.5 0.12 20);">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-heading font-semibold mb-1" style="color: oklch(0.4 0.1 20);">¿Hay una crisis ahora?</h3>
+          <p class="text-sm leading-relaxed" style="color: oklch(0.45 0.08 20);">
+            Si tu familiar está en riesgo inmediato, llamá al <strong>107 (SAME)</strong> o al <strong>911</strong>. Para consultas de salud mental urgentes: <strong>141 (SEDRONAR)</strong>, gratuito, 24 horas.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <CTASection
+      title="No tenés que saber cómo ayudar para pedir orientación."
+      description="Escribinos y un profesional del equipo te escucha. La primera consulta es gratuita, confidencial y sin compromiso."
+      primaryLabel="Contactar ahora"
+      primaryHref="/contacto"
+      secondaryLabel="WhatsApp"
+      secondaryHref="https://wa.me/5493516716580?text=Hola%2C%20soy%20familiar%20y%20necesito%20orientaci%C3%B3n"
+      variant="gradient"
+    />
+
+    <RelatedPages
+      pages={[
+        { title: 'Orientación Familiar', href: '/programas/orientacion-familiar', description: 'El espacio para familias cuando el ser querido aún no está listo.' },
+        { title: 'Preguntas Frecuentes', href: '/preguntas-frecuentes', description: 'Más respuestas a las dudas más comunes.' },
+        { title: 'Recursos y Blog', href: '/recursos', description: 'Artículos sobre cómo acompañar un proceso de recuperación.' },
+      ]}
+    />
+  </div>
+</PageLayout>

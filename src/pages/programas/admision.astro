@@ -1,0 +1,131 @@
+---
+// /programas/admision
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
+import Icon from '../../components/Icon.astro';
+import { Image } from 'astro:assets';
+---
+
+<PageLayout
+  title="Admisión"
+  description="El proceso de admisión en la Fundación Por Un Mundo Mejor: tres entrevistas de evaluación psicológica y psiquiátrica para definir el diagnóstico y el plan de tratamiento más adecuado."
+>
+  <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">
+    <div class="container-6xl relative z-10">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Programas', href: '/programas' }, { label: 'Admisión' }]} />
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/20 border border-brand-500/30 flex items-center justify-center text-primary">
+          <Icon name="ClipboardCheck" class="w-7 h-7" />
+        </div>
+        <div>
+          <span class="text-brand-300 text-sm font-semibold">Primer paso</span>
+          <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Admisión</h1>
+        </div>
+      </div>
+      <p class="text-[oklch(1_0_0_/_0.72)] text-lg max-w-2xl">El comienzo de todo proceso: una evaluación profunda, sin juicio, para entender qué está pasando y qué camino tiene más sentido para cada persona.</p>
+    </div>
+  </div>
+
+  <!-- Imagen de cabecera — aspect-ratio 4:3 fijo, corte limpio sin solapamiento -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <div class="w-full rounded-2xl overflow-hidden shadow-card" style="aspect-ratio: 4 / 3;">
+      <Image
+        src="/images/admision.jpg"
+        alt="Entrada de la Fundación Por Un Mundo Mejor, el primer paso del proceso"
+        width={1200}
+        height={900}
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+
+    <!-- Qué es -->
+    <section>
+      <h2 class="font-sora font-bold text-2xl text-gray-900 dark:text-white mb-4">¿En qué consiste?</h2>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+        La admisión es el proceso de evaluación inicial que permite a nuestro equipo conocer en profundidad la situación de cada persona y definir el plan de tratamiento más adecuado. No es un trámite burocrático: es el primer espacio de escucha real, donde la persona puede hablar de lo que le pasa sin ser juzgada.
+      </p>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+        El proceso consiste en <strong>tres entrevistas psicológicas y/o psiquiátricas</strong>, que se realizan de forma individual y que permiten elaborar un diagnóstico presuntivo y un pronóstico provisorio. A partir de ese material, el equipo terapéutico define, junto con la persona y su familia, la modalidad de tratamiento más apropiada.
+      </p>
+    </section>
+
+    <!-- ¿A quién está dirigido? -->
+    <section>
+      <h2 class="font-sora font-bold text-2xl text-gray-900 dark:text-white mb-4">¿A quién está dirigido?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          { icon: 'User', text: 'Personas con consumo problemático de cualquier sustancia (alcohol, drogas ilegales, psicofármacos) que quieran evaluar opciones de tratamiento.' },
+          { icon: 'Users', text: 'Familiares preocupados por un ser querido, que quieran entender la situación antes de dar un paso más.' },
+          { icon: 'Scale', text: 'Personas derivadas por orden judicial del Superior Tribunal de Justicia de la Provincia de Córdoba.' },
+          { icon: 'Hospital', text: 'Pacientes en crisis que requieren evaluación urgente — en ese caso, se los deriva al servicio de salud más cercano para estabilización previa.' },
+        ].map((item) => (
+          <div class="flex gap-4 p-5 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 items-start">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: color-mix(in oklch, var(--primary) 12%, var(--background)); color: var(--primary);">
+              <Icon name={item.icon} class="w-5 h-5" />
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed pt-1">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Cómo es el proceso -->
+    <section>
+      <h2 class="font-sora font-bold text-2xl text-gray-900 dark:text-white mb-6">¿Cómo es el proceso?</h2>
+      <div class="space-y-4">
+        {[
+          { step: '1', title: 'Primera entrevista', desc: 'Encuentro con un psicólogo o psiquiatra del equipo. Se recoge la historia del consumo, el contexto familiar y social, y las motivaciones actuales de la persona. Se establece el encuadre y la confidencialidad.' },
+          { step: '2', title: 'Segunda entrevista', desc: 'Profundización en la historia personal, vínculos afectivos, trayectoria laboral o educativa, y presencia de patología dual. En algunos casos, se suma una evaluación psiquiátrica específica.' },
+          { step: '3', title: 'Devolución y plan', desc: 'El equipo comparte sus conclusiones con la persona y, cuando corresponde, con su familia. Se presenta una propuesta de tratamiento —modalidad, duración y objetivos— y se trabaja la motivación para iniciar el proceso.' },
+        ].map((item) => (
+          <div class="flex gap-5 p-6 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-teal-600 text-white font-sora font-bold flex items-center justify-center flex-shrink-0">
+              {item.step}
+            </div>
+            <div>
+              <h3 class="font-sora font-semibold text-base text-gray-900 dark:text-white mb-1">{item.title}</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Importante -->
+    <div class="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-xl p-6">
+      <div class="flex gap-3">
+        <span class="text-2xl flex-shrink-0">⚠️</span>
+        <div>
+          <h3 class="font-sora font-semibold text-amber-900 dark:text-amber-300 mb-1">Situaciones de crisis</h3>
+          <p class="text-sm text-amber-800 dark:text-amber-400 leading-relaxed">
+            Si la persona se encuentra en una situación de crisis aguda (riesgo de daño a sí misma o a otros, intoxicación severa), no es posible iniciar el proceso de admisión hasta que la situación esté estabilizada. En ese caso, el equipo orienta y acompaña la derivación al servicio de salud más cercano.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <CTASection
+      title="¿Querés iniciar el proceso de admisión?"
+      description="Escribinos por WhatsApp o completá el formulario de contacto. Te respondemos para coordinar la primera entrevista."
+      primaryLabel="Solicitar turno"
+      primaryHref="/contacto"
+      secondaryLabel="WhatsApp"
+      secondaryHref="https://wa.me/5493516716580?text=Hola%2C%20quiero%20saber%20sobre%20el%20proceso%20de%20admisi%C3%B3n"
+      variant="gradient"
+    />
+
+    <RelatedPages
+      pages={[
+        { title: 'Hospital de Día', href: '/programas/hospital-de-dia', description: 'Programa intensivo de jornada completa (8 horas) para reinserción social.', iconName: 'Sun' },
+        { title: 'Planes de Tratamiento', href: '/planes-de-tratamiento', description: 'Conocé cómo se combinan las modalidades en el Plan A, B y C.', iconName: 'ClipboardCheck' },
+        { title: 'Para Familias', href: '/familias', description: 'Guía empática para familias que buscan orientación.', iconName: 'Users' },
+      ]}
+    />
+  </div>
+</PageLayout>

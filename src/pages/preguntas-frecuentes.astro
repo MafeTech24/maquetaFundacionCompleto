@@ -1,0 +1,203 @@
+---
+// /preguntas-frecuentes — FAQ con búsqueda y categorías
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTASection from '../components/CTASection.astro';
+
+const faqGroups = [
+  {
+    category: 'Tratamiento',
+    icon: '🏥',
+    faqs: [
+      {
+        q: '¿Cuánto dura un tratamiento?',
+        a: 'Depende de la modalidad. El Hospital de Día dura aproximadamente 6 meses; el Tratamiento Ambulatorio, de 3 a 6 meses. El Plan A (que combina Hospital de Día y Ambulatorio) dura entre 9 y 12 meses; el Plan B es de aproximadamente 6 meses. La duración final siempre se define y ajusta en base al proceso de cada persona.',
+      },
+      {
+        q: '¿Puedo elegir la modalidad de tratamiento?',
+        a: 'La modalidad se define de manera conjunta entre el equipo y la persona (y su familia) durante el proceso de admisión. Se evalúan el nivel de compromiso del consumo, el contexto familiar, la inserción social y otros factores. En algunos casos la indicación es clara; en otros, hay margen para las preferencias personales.',
+      },
+      {
+        q: '¿Qué pasa si recaigo durante el tratamiento?',
+        a: 'La recaída es parte posible de cualquier proceso de recuperación, no es un fracaso. Si ocurre, el equipo la trabaja clínicamente: se evalúa qué pasó, qué factores contribuyeron y qué ajustes son necesarios en el plan. En algunos casos implica retomar una etapa anterior; en otros, intensificar el acompañamiento.',
+      },
+      {
+        q: '¿La fundación atiende a personas judicializadas?',
+        a: 'Sí. La fundación atiende casos derivados por el Superior Tribunal de Justicia de la Provincia de Córdoba. Los protocolos y la confidencialidad se manejan según las condiciones de cada disposición judicial.',
+      },
+      {
+        q: '¿Atienden también trastornos duales?',
+        a: 'Sí. La fundación tiene experiencia específica en el abordaje de pacientes duales: personas con consumo problemático y un trastorno de personalidad, cuadro psicótico o discapacidad intelectual subyacente. El tratamiento integra ambas dimensiones.',
+      },
+    ],
+  },
+  {
+    category: 'Familias',
+    icon: '👨‍👩‍👧',
+    faqs: [
+      {
+        q: '¿Puedo pedir orientación si mi familiar no quiere tratarse?',
+        a: 'Absolutamente. El programa de Orientación Familiar existe exactamente para eso: para que la familia pueda comenzar su proceso sin que el ser querido participe todavía. La primera consulta es confidencial y no implica ningún compromiso.',
+      },
+      {
+        q: '¿Qué puedo hacer mientras espero que mi familiar acepte tratamiento?',
+        a: 'Venir al espacio de Orientación Familiar te permitirá entender mejor lo que está pasando, aprender cómo hablar sin que la conversación termine en conflicto, identificar qué actitudes ayudan y cuáles dificultan el proceso, y cuidarte vos también. No es tiempo perdido: muchas veces los cambios en la dinámica familiar son lo que finalmente motiva al ser querido a dar el paso.',
+      },
+      {
+        q: '¿La familia participa en el tratamiento del paciente?',
+        a: 'Sí, especialmente a través de la Psicoterapia Multifamiliar. La familia no es solo contexto: es parte activa del proceso de recuperación. El grado de participación se define en la evaluación y puede variar según la modalidad.',
+      },
+    ],
+  },
+  {
+    category: 'Costos y Obras Sociales',
+    icon: '💳',
+    faqs: [
+      {
+        q: '¿Las obras sociales cubren el tratamiento?',
+        a: 'La fundación mantiene convenios continuos con obras sociales y organismos de gobierno. La cobertura específica depende de cada obra social. En la primera consulta podés preguntar sobre la situación de tu cobertura particular.',
+      },
+      {
+        q: '¿Qué pasa si no tengo obra social?',
+        a: 'Existen alternativas de cobertura pública y gestión a través de organismos como el PAMI, el Ministerio de Salud provincial o la SEDRONAR. El equipo puede orientarte sobre las opciones disponibles en tu caso.',
+      },
+      {
+        q: '¿Se puede hacer un tratamiento particular?',
+        a: 'Sí. Es posible realizar el tratamiento en modalidad particular. Los aranceles se informan en la primera consulta según la modalidad elegida.',
+      },
+    ],
+  },
+  {
+    category: 'Confidencialidad',
+    icon: '🔒',
+    faqs: [
+      {
+        q: '¿La consulta es confidencial?',
+        a: 'Sí. Todo lo que se comparte en una consulta individual o familiar es confidencial. El equipo no comparte información con terceros sin el consentimiento explícito de la persona atendida, salvo en situaciones de riesgo grave para la vida.',
+      },
+      {
+        q: '¿Alguien del trabajo o la escuela puede enterarse?',
+        a: 'No. La fundación no informa a empleadores, instituciones educativas ni a ningún tercero sobre la situación de las personas que consultan o se tratan, a menos que la persona lo solicite expresamente.',
+      },
+      {
+        q: '¿El tratamiento figura en algún registro público?',
+        a: 'No. El tratamiento en una institución de salud mental no figura en registros públicos de acceso libre. Los datos clínicos son protegidos por la Ley de Salud Mental N° 26.657 y por el secreto profesional.',
+      },
+      {
+        q: '¿Qué pasa con los datos del formulario de contacto?',
+        a: 'Los datos que ingresás en el formulario de contacto se utilizan exclusivamente para responderte. No se comparten con terceros ni se usan con fines comerciales. Podés leer nuestra Política de Privacidad para más detalles.',
+      },
+    ],
+  },
+];
+---
+
+<PageLayout
+  title="Preguntas Frecuentes"
+  description="Respuestas a las preguntas más comunes sobre el tratamiento, las familias, los costos y la confidencialidad en la Fundación Por Un Mundo Mejor."
+>
+  <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">
+    <div class="container-6xl relative z-10">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Preguntas Frecuentes' }]} />
+      <h1 class="font-fraunces font-black text-4xl sm:text-5xl text-white mb-4">Preguntas Frecuentes</h1>
+      <p class="text-[oklch(1_0_0_/_0.72)] text-lg max-w-2xl">Encontrá respuestas a las dudas más comunes sobre nuestros programas, costos y confidencialidad.</p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+    <!-- Búsqueda -->
+    <div class="mb-10">
+      <div class="relative">
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input
+          type="text"
+          id="faq-search"
+          placeholder="Buscar en las preguntas frecuentes..."
+          class="w-full pl-12 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+        />
+      </div>
+    </div>
+
+    <!-- FAQ por categoría -->
+    <div id="faq-container" class="space-y-12">
+      {faqGroups.map((group) => (
+        <section data-category={group.category}>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-2xl">{group.icon}</span>
+            <h2 class="font-sora font-bold text-xl text-gray-900 dark:text-white">{group.category}</h2>
+          </div>
+          <div class="space-y-3">
+            {group.faqs.map((faq) => (
+              <details
+                class="group border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-900 hover:border-brand-300 dark:hover:border-brand-700 transition-colors duration-200 faq-item"
+                data-question={faq.q.toLowerCase()}
+                data-answer={faq.a.toLowerCase()}
+              >
+                <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer list-none select-none font-semibold text-gray-800 dark:text-gray-100 text-sm">
+                  <span>{faq.q}</span>
+                  <span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand-50 dark:bg-brand-950 flex items-center justify-center text-brand-600 dark:text-brand-400 group-open:bg-brand-600 dark:group-open:bg-brand-600 group-open:text-white transition-all duration-200">
+                    <svg class="w-4 h-4 transition-transform duration-300 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                  </span>
+                </summary>
+                <div class="px-5 pb-5 pt-1 text-sm text-gray-600 dark:text-gray-300 leading-relaxed border-t border-gray-100 dark:border-gray-800">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <!-- No encontró -->
+    <div id="no-results" class="hidden text-center py-12">
+      <span class="text-4xl mb-3 block">🔍</span>
+      <p class="text-gray-500 dark:text-gray-400">No se encontraron resultados para tu búsqueda.</p>
+      <p class="text-sm text-gray-400 dark:text-gray-500 mt-2">Probá con otras palabras o <a href="/contacto" class="text-brand-600 dark:text-brand-400 hover:underline">contactanos directamente</a>.</p>
+    </div>
+
+    <div class="mt-16">
+      <CTASection
+        title="¿No encontraste lo que buscabas?"
+        description="Escribinos por WhatsApp o completá el formulario de contacto. Te respondemos a la brevedad."
+        primaryLabel="Ir al contacto"
+        primaryHref="/contacto"
+        secondaryLabel="WhatsApp"
+        secondaryHref="https://wa.me/5493516716580?text=Hola%2C%20tengo%20una%20consulta"
+        variant="gradient"
+      />
+    </div>
+  </div>
+</PageLayout>
+
+<script>
+  const searchInput = document.getElementById('faq-search') as HTMLInputElement;
+  const faqItems = document.querySelectorAll('.faq-item') as NodeListOf<HTMLElement>;
+  const sections = document.querySelectorAll('#faq-container section') as NodeListOf<HTMLElement>;
+  const noResults = document.getElementById('no-results');
+
+  searchInput?.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    let anyVisible = false;
+
+    faqItems.forEach((item) => {
+      const q = item.dataset.question || '';
+      const a = item.dataset.answer || '';
+      const matches = !query || q.includes(query) || a.includes(query);
+      item.style.display = matches ? '' : 'none';
+      if (matches) anyVisible = true;
+    });
+
+    sections.forEach((section) => {
+      const visibleItems = section.querySelectorAll('.faq-item:not([style*="none"])');
+      (section as HTMLElement).style.display = visibleItems.length > 0 ? '' : 'none';
+    });
+
+    if (noResults) noResults.style.display = anyVisible ? 'none' : '';
+  });
+</script>

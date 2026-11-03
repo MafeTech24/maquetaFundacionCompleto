@@ -1,0 +1,128 @@
+---
+// /programas/orientacion-familiar
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
+import Icon from '../../components/Icon.astro';
+import { Image } from 'astro:assets';
+---
+
+<PageLayout
+  title="Orientación Familiar"
+  description="El programa de Orientación Familiar de la Fundación Por Un Mundo Mejor: encuentros quincenales de 3 a 6 meses para familias preocupadas por un ser querido, sin que el paciente participe todavía."
+>
+  <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">
+    <div class="container-6xl relative z-10">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Programas', href: '/programas' }, { label: 'Orientación Familiar' }]} />
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/20 border border-brand-500/30 flex items-center justify-center text-primary">
+          <Icon name="HeartHandshake" class="w-7 h-7" />
+        </div>
+        <div>
+          <span class="text-brand-300 text-sm font-semibold">Para familias · Sin requisitos previos</span>
+          <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Orientación Familiar</h1>
+        </div>
+      </div>
+      <p class="text-[oklch(1_0_0_/_0.72)] text-lg max-w-2xl">No hace falta esperar a que el ser querido esté listo. El proceso puede comenzar con vos, ahora.</p>
+    </div>
+  </div>
+
+  <!-- Imagen de cabecera — aspect-ratio 4:3 fijo, corte limpio sin solapamiento -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <div class="w-full rounded-2xl overflow-hidden shadow-card" style="aspect-ratio: 4 / 3;">
+      <Image
+        src="/images/comunidad-terapeutica.jpg"
+        alt="Espacio cálido de orientación para familias"
+        width={1200}
+        height={900}
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+
+    <section>
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-4">¿Qué es la Orientación Familiar?</h2>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+        La Orientación Familiar es un programa de <strong>encuentros quincenales</strong> pensado para familias que están preocupadas por el consumo de un ser querido, pero que todavía no cuentan con su participación en el tratamiento.
+      </p>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+        Es un espacio sin juicio donde la familia puede encontrar orientación, contención y herramientas concretas para atravesar esta situación sin agotarse y sin empeorar inadvertidamente el vínculo con la persona que consume.
+      </p>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+        <strong>El paciente no participa de este espacio</strong>, al menos en la etapa inicial. Eso no significa que no se trabaje para él: el cambio en la dinámica familiar que produce este programa es, muchas veces, lo que termina motivando a la persona a dar el paso hacia el tratamiento.
+      </p>
+    </section>
+
+    <div class="bg-teal-50 dark:bg-teal-950/30 border border-teal-100 dark:border-teal-900 rounded-2xl p-7">
+      <h3 class="font-heading font-bold text-lg text-gray-900 dark:text-white mb-3">¿Por qué empezar sin que el paciente esté listo?</h3>
+      <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-3">
+        Esperar a que la persona con consumo problemático "toque fondo" o "quiera por sí sola" puede ser un tiempo muy largo y doloroso para la familia. Mientras tanto, las dinámicas relacionales en el hogar suelen volverse más rígidas, más conflictivas o más desgastantes.
+      </p>
+      <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+        La Orientación Familiar apuesta a que la familia no espere pasivamente, sino que tome un rol activo en su propio proceso. Eso tiene valor en sí mismo, más allá de lo que haga o no haga el ser querido.
+      </p>
+    </div>
+
+    <section>
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-6">¿Cómo funciona?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {[
+          { icon: 'Calendar', title: 'Frecuencia', desc: 'Encuentros quincenales (cada dos semanas), con posibilidad de ajustar la frecuencia según las necesidades de cada familia.' },
+          { icon: 'Clock', title: 'Duración del programa', desc: 'Entre 3 y 6 meses, con evaluación continua del equipo. No hay un cronograma rígido: el ritmo se adapta a cada proceso.' },
+          { icon: 'Users', title: 'Formato', desc: 'Puede ser grupal (con otras familias en situaciones similares) o individual (solo con la familia consultante). El equipo define el formato más apropiado en el primer contacto.' },
+          { icon: 'Lock', title: 'Confidencialidad', desc: 'Todo lo hablado en el espacio es confidencial. Lo que se trabaja en el grupo no sale del grupo.' },
+        ].map((item) => (
+          <div class="p-5 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 flex flex-col items-start">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style="background: color-mix(in oklch, var(--primary) 12%, var(--background)); color: var(--primary);">
+              <Icon name={item.icon} class="w-5 h-5" />
+            </div>
+            <h3 class="font-heading font-semibold text-sm text-gray-900 dark:text-white mb-1">{item.title}</h3>
+            <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-5">Qué se trabaja</h2>
+      <ul class="space-y-3">
+        {[
+          'Entender qué está pasando: información sobre el consumo problemático y sus dinámicas',
+          'Cómo hablar con el ser querido sin que la conversación termine en conflicto',
+          'Qué es cuidar y qué es habilitar: límites afectivos desde el amor',
+          'El propio malestar de la familia: culpa, miedo, agotamiento, vergüenza',
+          'Cómo motivar sin presionar y sin renunciar a los propios límites',
+          'Qué hacer si la situación se agudiza o si hay un episodio de crisis',
+          'Cuándo y cómo proponer el tratamiento al ser querido',
+        ].map((tema) => (
+          <li class="flex items-start gap-3 p-4 bg-white dark:bg-gray-900 rounded-lg border border-gray-100 dark:border-gray-800">
+            <span class="w-2 h-2 rounded-full bg-brand-500 flex-shrink-0 mt-1.5"></span>
+            <span class="text-sm text-gray-700 dark:text-gray-300">{tema}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <CTASection
+      title="¿Estás preocupado/a por alguien? El primer paso puede ser para vos."
+      description="Contactanos y te orientamos sobre cómo funciona el espacio de Orientación Familiar. Sin compromiso, con total confidencialidad."
+      primaryLabel="Solicitar orientación"
+      primaryHref="/contacto"
+      secondaryLabel="WhatsApp"
+      secondaryHref="https://wa.me/5493516716580?text=Hola%2C%20soy%20familiar%20y%20quiero%20saber%20sobre%20la%20Orientaci%C3%B3n%20Familiar"
+      variant="gradient"
+    />
+
+    <RelatedPages
+      pages={[
+        { title: 'Para Familias', href: '/familias', description: 'Guía empática completa para familiares que buscan cómo ayudar.', iconName: 'Users' },
+        { title: 'Psicoterapia Multifamiliar', href: '/programas/psicoterapia-multifamiliar', description: 'El espacio multifamiliar cuando el paciente ya está en tratamiento.', iconName: 'Users' },
+        { title: 'Preguntas Frecuentes', href: '/preguntas-frecuentes', description: 'Respuestas a las preguntas más comunes de familias.', iconName: 'ClipboardCheck' },
+      ]}
+    />
+  </div>
+</PageLayout>

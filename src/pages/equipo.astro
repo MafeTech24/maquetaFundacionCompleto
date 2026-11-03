@@ -1,0 +1,332 @@
+---
+// /equipo — Equipo terapéutico completo
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTASection from '../components/CTASection.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+// Fotos del equipo: se cargan automáticamente desde src/assets/equipo/
+// El archivo tiene que llamarse como el nombre de la persona, en minúsculas,
+// sin tildes y con guiones. Ej: "Mónica Frencia" → monica-frencia.jpg (jpg, jpeg, png o webp).
+// Si no hay foto, se muestra el avatar con iniciales.
+const fotos = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/equipo/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
+  { eager: true }
+);
+const slug = (nombre: string) =>
+  nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const fotoDe = (nombre: string): ImageMetadata | undefined => {
+  const entrada = Object.entries(fotos).find(([ruta]) => {
+    const archivo = ruta.split('/').pop()!.replace(/\.[^.]+$/, '').toLowerCase();
+    return archivo === slug(nombre);
+  });
+  return entrada?.[1].default;
+};
+
+// Equipo organizado por área
+// Para sumar un CV: agregar `bio: ['párrafo 1', 'párrafo 2', ...]` al miembro.
+// La tarjeta muestra "Ver perfil" y abre una ventana con la foto grande y el texto.
+type Miembro = { name: string; role: string; initials: string; extra?: string; bio?: string[] };
+const equipo: { area: string; svgPaths: string; miembros: Miembro[] }[] = [
+  {
+    area: 'Dirección',
+    svgPaths: `<path stroke-linecap="round" stroke-linejoin="round" d="M6 22V4a2 2 0 012-2h8a2 2 0 012 2v18"/><path stroke-linecap="round" stroke-linejoin="round" d="M6 12H4a2 2 0 00-2 2v6a2 2 0 002 2h2"/><path stroke-linecap="round" stroke-linejoin="round" d="M18 9h2a2 2 0 012 2v9a2 2 0 01-2 2h-2"/>`,
+    miembros: [
+      {
+        name: 'Mónica Frencia', role: 'Directora Técnica', initials: 'MF', extra: 'Médica Psiquiatra',
+        bio: [
+          'Estudió Medicina en la Universidad Nacional de Córdoba (UNC) y luego accedió a la especialidad de Psiquiatría por el Consejo de Médicos de la Provincia de Córdoba. Desde sus primeros años de ejercicio, en el ámbito de la gestión pública, se dedicó al alcoholismo y las adicciones.',
+          'Es miembro fundadora de la Fundación Por Un Mundo Mejor, que integra desde 2008, y está a cargo de su equipo asistencial. Entre 2008 y 2020 se desempeñó además como docente en los cursos dictados por la institución y en actividades de extensión universitaria.',
+          'Es magíster en Drogodependencia desde 2011 y actualmente cursa el Doctorado en Estudios Internacionales de la Facultad de Ciencias Sociales de la UNC.',
+        ],
+      },
+      { name: 'Gimena Paris', role: 'Directora Operativa', initials: 'GP' },
+    ],
+  },
+  {
+    area: 'Clínica Médica',
+    svgPaths: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>`,
+    miembros: [
+      { name: 'Daniela Mendoza', role: 'Clínica Médica', initials: 'DM' },
+    ],
+  },
+  {
+    area: 'Psicología',
+    svgPaths: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>`,
+    miembros: [
+      { name: 'Ana Paris', role: 'Psicóloga', initials: 'AP', extra: 'Hospital de Día y Ambulatorio' },
+      { name: 'Ana Caballero', role: 'Psicóloga', initials: 'AC' },
+      { name: 'Gastón Vaccano', role: 'Psicólogo', initials: 'GV' },
+    ],
+  },
+  {
+    area: 'Educación y Nutrición',
+    svgPaths: `<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342"/>`,
+    miembros: [
+      { name: 'María Eva Vallejos', role: 'Educadora', initials: 'MEV' },
+      { name: 'Lucía Wolter', role: 'Nutricionista', initials: 'LW' },
+    ],
+  },
+  {
+    area: 'Trabajo Social',
+    svgPaths: `<path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>`,
+    miembros: [
+      { name: 'Guillermina', role: 'Trabajadora Social', initials: 'G' },
+    ],
+  },
+  {
+    area: 'Talleristas',
+    svgPaths: `<path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"/>`,
+    miembros: [
+      { name: 'Fernando Martín', role: 'Tallerista', initials: 'FM' },
+      { name: 'Angélica Jaime', role: 'Tallerista', initials: 'AJ' },
+      { name: 'Marco Hernández', role: 'Tallerista', initials: 'MH' },
+    ],
+  },
+  {
+    area: 'Operadores Terapéuticos',
+    svgPaths: `<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>`,
+    miembros: [
+      { name: 'Luis Villegas', role: 'Operador Terapéutico', initials: 'LV' },
+      { name: 'César Merlo', role: 'Operador Terapéutico', initials: 'CM' },
+      { name: 'Pablo Simbrón', role: 'Operador Terapéutico', initials: 'PS' },
+      { name: 'Fátima Figueroa', role: 'Operadora Terapéutica', initials: 'FF' },
+      { name: 'Cecilia Acevedo', role: 'Operadora Terapéutica', initials: 'CA' },
+      { name: 'Ariel Tossen', role: 'Operador Terapéutico', initials: 'AT' },
+    ],
+  },
+  {
+    area: 'Administración',
+    svgPaths: `<path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"/>`,
+    miembros: [
+      { name: 'Milagros Miranda', role: 'Administrativa', initials: 'MM' },
+    ],
+  },
+];
+---
+
+<PageLayout
+  title="Nuestro Equipo"
+  description="Conocé al equipo terapéutico de la Fundación Por Un Mundo Mejor: psiquiatras, psicólogos, educadores, nutricionista, trabajadora social, talleristas, operadores terapéuticos y administración."
+>
+  <!-- Hero interior -->
+  <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">
+    <div class="blob w-80 h-80 -top-20 -right-20" style="opacity: 0.15;"></div>
+    <div class="container-6xl relative z-10">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Equipo' }]} />
+      <div class="eyebrow mb-4"><span class="eyebrow-dot"></span>Equipo terapéutico</div>
+      <h1 class="font-fraunces font-black text-4xl sm:text-5xl text-white mb-4">Nuestro Equipo</h1>
+      <p class="text-lg max-w-2xl leading-relaxed" style="color: oklch(1 0 0 / 0.72);">
+        Un equipo interdisciplinario que trabaja de manera integrada para acompañar cada aspecto del proceso: lo clínico, lo educativo, lo social, lo corporal y lo cotidiano.
+      </p>
+    </div>
+  </div>
+
+
+  <div class="container-6xl py-16 space-y-16">
+
+    <!-- Intro -->
+    <div class="rounded-3xl p-7 max-w-3xl" style="background: color-mix(in oklch, var(--primary) 8%, var(--background)); border: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);">
+      <p class="leading-relaxed" style="color: var(--foreground);">
+        El equipo de la Fundación Por Un Mundo Mejor trabaja desde un enfoque interdisciplinario: cada área aporta su mirada específica, pero todas convergen en un objetivo común. Los operadores terapéuticos son los referentes más cercanos del día a día; los profesionales clínicos orientan el proceso terapéutico; los talleristas abren los espacios de expresión y oficio.
+      </p>
+      <p class="text-xs mt-4" style="color: var(--muted-fg);">
+        * Las fotos del equipo serán actualizadas próximamente. Las imágenes actuales son avatares con iniciales.
+      </p>
+    </div>
+
+    {equipo.map((area) => (
+      <section>
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background: color-mix(in oklch, var(--primary) 12%, var(--background)); color: var(--primary);">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" set:html={area.svgPaths} />
+          </div>
+          <h2 class="font-fraunces font-bold text-xl" style="color: var(--foreground);">{area.area}</h2>
+          <div class="flex-1 h-px ml-2" style="background: var(--border);"></div>
+        </div>
+        <div class={`grid gap-5 ${
+          area.miembros.length === 1 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' :
+          area.miembros.length === 2 ? 'grid-cols-2 sm:grid-cols-2 lg:grid-cols-4' :
+          area.miembros.length <= 4 ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4' :
+          'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6'
+        }`}>
+          {area.miembros.map((miembro) => (
+            <div class="group card-base flex flex-col items-center text-center py-6">
+              {fotoDe(miembro.name) ? (
+                <Image
+                  src={fotoDe(miembro.name)!}
+                  alt={`${miembro.name}, ${miembro.role}`}
+                  width={240}
+                  class="w-20 h-20 rounded-2xl object-cover object-top mb-4 group-hover:scale-105 transition-all duration-300"
+                  style="box-shadow: var(--shadow-primary);"
+                  loading="lazy"
+                />
+              ) : (
+                <div
+                  class="w-20 h-20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-all duration-300"
+                  style="background: var(--gradient-iso); box-shadow: var(--shadow-primary);"
+                >
+                  <span class="font-fraunces font-bold text-xl text-white">{miembro.initials}</span>
+                </div>
+              )}
+              <h3 class="font-fraunces font-bold text-base leading-snug" style="color: var(--foreground);">{miembro.name}</h3>
+              <p class="text-sm font-semibold mt-0.5" style="color: var(--primary);">{miembro.role}</p>
+              {miembro.extra && (
+                <span class="mt-2 text-xs px-3 py-1 rounded-full" style="background: color-mix(in oklch, var(--secondary) 60%, transparent); color: var(--secondary-fg);">{miembro.extra}</span>
+              )}
+              {miembro.bio && (
+                <>
+                  <button
+                    type="button"
+                    class="perfil-btn mt-4 inline-flex items-center gap-1.5 text-sm font-bold"
+                    style="color: var(--primary);"
+                    data-perfil={`perfil-${slug(miembro.name)}`}
+                    aria-haspopup="dialog"
+                  >
+                    Ver perfil
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                  <dialog
+                    id={`perfil-${slug(miembro.name)}`}
+                    class="perfil-dialog text-left"
+                    aria-labelledby={`perfil-${slug(miembro.name)}-titulo`}
+                  >
+                    <div class="perfil-panel">
+                      <button type="button" class="perfil-cerrar" data-cerrar aria-label="Cerrar">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                      <div class="flex flex-col sm:flex-row gap-5 sm:items-center mb-6">
+                        {fotoDe(miembro.name) ? (
+                          <Image
+                            src={fotoDe(miembro.name)!}
+                            alt={`${miembro.name}, ${miembro.role}`}
+                            width={400}
+                            class="w-32 h-32 rounded-2xl object-cover object-top shrink-0"
+                            style="box-shadow: var(--shadow-primary);"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div class="w-32 h-32 rounded-2xl flex items-center justify-center shrink-0" style="background: var(--gradient-iso);">
+                            <span class="font-fraunces font-bold text-3xl text-white">{miembro.initials}</span>
+                          </div>
+                        )}
+                        <div>
+                          <h3 id={`perfil-${slug(miembro.name)}-titulo`} class="font-fraunces font-bold text-2xl leading-tight" style="color: var(--foreground);">{miembro.name}</h3>
+                          <p class="font-semibold mt-1" style="color: var(--primary);">{miembro.role}</p>
+                          {miembro.extra && <p class="text-sm mt-0.5" style="color: var(--muted-fg);">{miembro.extra}</p>}
+                        </div>
+                      </div>
+                      <div class="space-y-4 leading-relaxed" style="color: var(--foreground);">
+                        {miembro.bio.map((parrafo) => <p>{parrafo}</p>)}
+                      </div>
+                    </div>
+                  </dialog>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <!-- Formación continua -->
+    <section class="card-base">
+      <h2 class="font-fraunces font-bold text-2xl mb-4" style="color: var(--foreground);">Formación continua</h2>
+      <p class="leading-relaxed mb-4" style="color: var(--muted-fg);">
+        El equipo participa de manera regular en jornadas de capacitación, supervisiones clínicas y espacios de actualización profesional. La fundación también es unidad de prácticas supervisadas de estudiantes de la UNC, la UPC y de institutos privados de Acompañamiento Terapéutico, lo que mantiene al equipo en permanente diálogo con las últimas generaciones de profesionales.
+      </p>
+      <a href="/formacion" class="inline-flex items-center gap-2 font-bold text-sm" style="color: var(--primary);">
+        Conocé nuestros programas de formación
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </section>
+
+    <CTASection
+      title="¿Querés ponerte en contacto con el equipo?"
+      description="Podés escribirnos directamente para coordinar una consulta o pedir más información sobre nuestros programas."
+      primaryLabel="Contactar"
+      primaryHref="/contacto"
+      secondaryLabel="WhatsApp"
+      secondaryHref="https://wa.me/5493516716580?text=Hola%2C%20quisiera%20contactarme%20con%20el%20equipo"
+      variant="gradient"
+    />
+  </div>
+</PageLayout>
+
+<script>
+  // Abre/cierra los perfiles del equipo (ventanas <dialog> nativas)
+  document.querySelectorAll<HTMLButtonElement>('[data-perfil]').forEach((btn) => {
+    const dialog = document.getElementById(btn.dataset.perfil!) as HTMLDialogElement | null;
+    if (!dialog) return;
+    btn.addEventListener('click', () => dialog.showModal());
+    dialog.querySelector('[data-cerrar]')?.addEventListener('click', () => dialog.close());
+    // Cerrar al hacer clic fuera del panel
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  });
+</script>
+
+<style>
+  .perfil-dialog {
+    width: min(42rem, calc(100vw - 2rem));
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    overflow: visible;
+  }
+  .perfil-dialog::backdrop {
+    background: oklch(0.2 0.03 240 / 0.55);
+    backdrop-filter: blur(4px);
+  }
+  .perfil-panel {
+    position: relative;
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    padding: 2rem 1.5rem 1.75rem;
+  }
+  @media (min-width: 640px) {
+    .perfil-panel { padding: 2.25rem 2.5rem 2.25rem; }
+  }
+  .perfil-cerrar {
+    position: absolute;
+    top: 0.875rem;
+    right: 0.875rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: 9999px;
+    color: var(--muted-fg);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .perfil-cerrar:hover {
+    background: var(--muted);
+    color: var(--foreground);
+  }
+  .perfil-dialog[open] .perfil-panel {
+    animation: perfil-entrada 0.25s ease-out;
+  }
+  @keyframes perfil-entrada {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to   { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .perfil-dialog[open] .perfil-panel { animation: none; }
+  }
+  .perfil-btn:hover svg { transform: translateX(3px); }
+  .perfil-btn svg { transition: transform 0.2s ease; }
+</style>

@@ -1,0 +1,73 @@
+---
+// CTASection.astro — Sección de llamado a la acción
+export interface Props {
+  title?: string;
+  description?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  variant?: 'default' | 'dark' | 'gradient';
+}
+const {
+  title = '¿Necesitás orientación?',
+  description = 'Nuestro equipo está disponible para escucharte y guiarte en el primer paso. La consulta es confidencial.',
+  primaryLabel = 'Pedir orientación',
+  primaryHref = '/contacto',
+  secondaryLabel = 'Escribir por WhatsApp',
+  secondaryHref = 'https://wa.me/5493516716580?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20un%20tratamiento',
+  variant = 'gradient',
+} = Astro.props;
+
+const isLight = variant === 'gradient';
+---
+
+<section
+  class="relative rounded-3xl overflow-hidden p-8 sm:p-12 text-center"
+  style={
+    variant === 'gradient'
+      ? 'background: var(--gradient-iso); box-shadow: var(--shadow-soft);'
+      : variant === 'dark'
+      ? 'background: var(--navy);'
+      : 'background: color-mix(in oklch, var(--secondary) 50%, var(--background));'
+  }
+>
+  <!-- Blobs decorativos -->
+  {isLight && (
+    <>
+      <div class="blob w-64 h-64 -top-16 -right-16" style="background: oklch(1 0 0 / 0.08); filter: blur(60px); opacity: 1;"></div>
+      <div class="blob w-48 h-48 -bottom-10 -left-10" style="background: oklch(1 0 0 / 0.06); filter: blur(50px); opacity: 1;"></div>
+    </>
+  )}
+
+  <div class="relative z-10">
+    <h2
+      class="font-fraunces font-bold text-2xl sm:text-3xl mb-4 leading-snug"
+      style={isLight || variant === 'dark' ? 'color: white;' : 'color: var(--foreground);'}
+    >
+      {title}
+    </h2>
+    <p
+      class="text-base sm:text-lg mb-8 max-w-2xl mx-auto leading-relaxed"
+      style={isLight || variant === 'dark' ? 'color: oklch(1 0 0 / 0.8);' : 'color: var(--muted-fg);'}
+    >
+      {description}
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href={primaryHref}
+        class={isLight || variant === 'dark' ? 'btn-ghost-light' : 'btn-primary'}
+      >
+        {primaryLabel}
+      </a>
+      <a
+        href={secondaryHref}
+        target={secondaryHref.startsWith('http') ? '_blank' : undefined}
+        rel={secondaryHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+        class={isLight ? 'btn-ghost-light' : 'btn-outline'}
+      >
+        {secondaryLabel}
+      </a>
+    </div>
+  </div>
+</section>

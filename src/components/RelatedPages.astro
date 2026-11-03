@@ -1,0 +1,46 @@
+---
+// RelatedPages.astro — "Te puede interesar también"
+import Icon from './Icon.astro';
+
+export interface Props {
+  pages: { title: string; href: string; description: string; icon?: string; iconName?: string }[];
+  title?: string;
+}
+const { pages, title = 'Te puede interesar también' } = Astro.props;
+---
+
+<section class="mt-16 pt-12" style="border-top: 1px solid var(--border);">
+  <h2 class="font-heading font-bold text-xl mb-6" style="color: var(--foreground);">{title}</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {pages.map((page) => (
+      <a
+        href={page.href}
+        class="group flex items-start gap-4 p-5 rounded-2xl transition-all duration-200 hover:-translate-y-0.5"
+        style="border: 1px solid var(--border); background: var(--card); box-shadow: var(--shadow-card);"
+      >
+        <div
+          class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200"
+          style="background: color-mix(in oklch, var(--primary) 12%, var(--background)); color: var(--primary);"
+        >
+          <Icon name={page.iconName ?? page.icon ?? 'Sparkles'} class="w-5 h-5" />
+        </div>
+        <div class="flex-1">
+          <h3
+            class="font-heading font-semibold text-sm leading-snug transition-colors group-hover:text-primary"
+            style="color: var(--foreground);"
+          >
+            {page.title}
+          </h3>
+          <p class="text-xs mt-1 leading-relaxed" style="color: var(--muted-fg);">{page.description}</p>
+        </div>
+        <svg
+          class="w-4 h-4 flex-shrink-0 mt-0.5 ml-auto transition-all duration-200 group-hover:translate-x-0.5"
+          fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+          style="color: var(--primary);"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    ))}
+  </div>
+</section>

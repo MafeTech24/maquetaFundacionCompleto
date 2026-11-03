@@ -1,0 +1,171 @@
+---
+// /formacion — Cursos, prácticas universitarias y capacitación
+import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTASection from '../components/CTASection.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import Icon from '../components/Icon.astro';
+import { Image } from 'astro:assets';
+---
+
+<PageLayout
+  title="Formación y Capacitación"
+  description="La Fundación Por Un Mundo Mejor como unidad de formación: cursos, jornadas, prácticas supervisadas UNC y UPC, y capacitación para equipos de salud y educación."
+>
+  <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">
+    <div class="container-6xl relative z-10">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Formación' }]} />
+      <h1 class="font-heading font-black text-4xl sm:text-5xl text-white mb-4">Formación y Capacitación</h1>
+      <p class="text-[oklch(1_0_0_/_0.72)] text-lg max-w-2xl leading-relaxed">
+        Más de 20 años de práctica clínica se traduce en conocimiento que compartimos con estudiantes, profesionales, docentes y comunidad.
+      </p>
+    </div>
+  </div>
+
+  <!-- Imagen principal — aspect-ratio 4:3 fijo, corte limpio sin solapamiento -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <div class="w-full rounded-2xl overflow-hidden shadow-card" style="aspect-ratio: 4 / 3;">
+      <Image
+        src="/images/formacion-capacitacion.jpg"
+        alt="Espacio de formación y capacitación profesional en la Fundación Por Un Mundo Mejor"
+        width={1200}
+        height={900}
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <!-- Universitaria -->
+    <section>
+      <span class="text-brand-600 dark:text-brand-400 text-sm font-bold uppercase tracking-wider">Prácticas universitarias</span>
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mt-2 mb-6">Unidad de Prácticas Supervisadas</h2>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
+        La Fundación Por Un Mundo Mejor es <strong>unidad de prácticas supervisadas</strong> para carreras universitarias y terciarias. Los estudiantes realizan sus prácticas en un contexto clínico real, con supervisión profesional del equipo y una formación que integra teoría y práctica desde el primer día.
+      </p>
+
+      <!-- Imagen secundaria — Jornada de capacitación grupal -->
+      <div class="w-full rounded-2xl overflow-hidden shadow-card mb-8" style="aspect-ratio: 16 / 8;">
+        <Image
+          src="/images/formacion-capacitacion-secundaria.jpg"
+          alt="Jornada de capacitación grupal en la Fundación Por Un Mundo Mejor"
+          width={1200}
+          height={600}
+          class="w-full h-full object-cover object-center"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {[
+          {
+            institución: 'UNC',
+            nombre: 'Universidad Nacional de Córdoba',
+            carreras: 'Psicología, Trabajo Social, y otras carreras de salud.',
+            desc: 'Convenio de prácticas supervisadas para estudiantes avanzados de la UNC.',
+          },
+          {
+            institución: 'UPC',
+            nombre: 'Universidad Provincial de Córdoba',
+            carreras: 'Psicología y carreras afines.',
+            desc: 'Unidad de prácticas para estudiantes de la UPC, con supervisión clínica del equipo.',
+          },
+          {
+            institución: 'AT',
+            nombre: 'Institutos de Acompañamiento Terapéutico',
+            carreras: 'Formación específica en Acompañamiento Terapéutico.',
+            desc: 'Práctica supervisada para estudiantes de institutos privados de AT de Córdoba.',
+          },
+        ].map((inst) => (
+          <div class="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-teal-600 flex items-center justify-center text-white font-heading font-bold text-sm mb-4">
+              {inst.institución}
+            </div>
+            <h3 class="font-heading font-semibold text-base text-gray-900 dark:text-white mb-1">{inst.nombre}</h3>
+            <p class="text-xs text-brand-600 dark:text-brand-400 mb-3">{inst.carreras}</p>
+            <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{inst.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Cursos y jornadas -->
+    <section>
+      <span class="text-brand-600 dark:text-brand-400 text-sm font-bold uppercase tracking-wider">Capacitación abierta</span>
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mt-2 mb-6">Cursos y Jornadas</h2>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
+        La fundación organiza periódicamente cursos y jornadas abiertas a profesionales, estudiantes, docentes y comunidad en general. El objetivo es contribuir a la comprensión de la problemática adictiva y a la construcción de una cultura de prevención y acompañamiento sin estigma.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {[
+          {
+            icon: 'Users',
+            title: 'Jornadas de sensibilización comunitaria',
+            desc: 'Eventos abiertos sobre prevención del consumo, señales de alerta, reducción de daños y recursos disponibles. Dirigidos a familias, docentes y comunidad en general.',
+          },
+          {
+            icon: 'FileText',
+            title: 'Cursos de capacitación profesional',
+            desc: 'Formación específica para profesionales de salud, educación y trabajo social. Aborda herramientas de intervención temprana, trabajo con familias y aspectos clínicos del consumo problemático.',
+          },
+          {
+            icon: 'Building2',
+            title: 'Capacitación en escuelas',
+            desc: 'Talleres y charlas para docentes y equipos de orientación escolar sobre detección temprana, comunicación con adolescentes y articulación con el sistema de salud.',
+          },
+          {
+            icon: 'Activity',
+            title: 'Investigación y producción de conocimiento',
+            desc: 'Sistematización de la experiencia clínica acumulada, participación en jornadas académicas y producción de material de divulgación sobre la problemática adictiva.',
+          },
+        ].map((item) => (
+          <div class="flex gap-5 p-6 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 items-start">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: color-mix(in oklch, var(--primary) 12%, var(--background)); color: var(--primary);">
+              <Icon name={item.icon} class="w-5 h-5" />
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-sm text-gray-900 dark:text-white mb-1">{item.title}</h3>
+              <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Para instituciones -->
+    <section class="bg-brand-50 dark:bg-brand-950/30 border border-brand-100 dark:border-brand-900 rounded-2xl p-8">
+      <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-4">¿Representás una institución o equipo de salud?</h2>
+      <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-5">
+        Si sos docente, coordinador/a de un equipo de salud, responsable de una institución educativa o trabajás en el campo de la prevención y querés contactarnos para organizar una capacitación o establecer un acuerdo de prácticas, escribinos directamente.
+      </p>
+      <a
+        href="https://wa.me/5493516716580?text=Hola%2C%20represento%20una%20instituci%C3%B3n%20y%20quisiera%20saber%20sobre%20capacitaciones"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-5 py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-brand-500/25"
+      >
+        Consultar por WhatsApp →
+      </a>
+    </section>
+
+    <CTASection
+      title="¿Querés sumarte como estudiante en práctica?"
+      description="Consultanos sobre disponibilidad de lugares para prácticas supervisadas. Te respondemos a la brevedad."
+      primaryLabel="Consultar"
+      primaryHref="/contacto"
+      secondaryLabel="WhatsApp"
+      secondaryHref="https://wa.me/5493516716580?text=Hola%2C%20soy%20estudiante%20y%20quisiera%20saber%20sobre%20pr%C3%A1cticas"
+      variant="gradient"
+    />
+
+    <RelatedPages
+      pages={[
+        { title: 'Nuestro Equipo', href: '/equipo', description: 'Conocé los profesionales que supervisan las prácticas.', iconName: 'Users' },
+        { title: 'Enfoque Terapéutico', href: '/enfoque-terapeutico', description: 'El marco teórico que orienta el trabajo clínico.', iconName: 'FileText' },
+        { title: 'Recursos y Blog', href: '/recursos', description: 'Artículos y material de divulgación de la fundación.', iconName: 'FileText' },
+      ]}
+    />
+  </div>
+</PageLayout>
