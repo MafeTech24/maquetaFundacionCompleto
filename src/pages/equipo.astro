@@ -174,7 +174,7 @@ const schema = {
           'grid-cols-1 sm:grid-cols-3 lg:grid-cols-6'
         }`}>
           {area.miembros.map((miembro) => (
-            <div id={slug(miembro.name)} class="group card-base flex flex-row items-center gap-4 text-left px-4 py-4 sm:flex-col sm:gap-0 sm:text-center sm:px-7 sm:py-6 scroll-mt-28">
+            <div id={slug(miembro.name)} class="group card-base flex flex-col items-center text-center gap-3 px-4 py-5 min-[360px]:flex-row min-[360px]:text-left min-[360px]:gap-4 min-[360px]:py-4 sm:flex-col sm:text-center sm:gap-0 sm:px-7 sm:py-6 scroll-mt-28">
               {fotoDe(miembro.name) ? (
                 <Image
                   src={fotoDe(miembro.name)!}
@@ -192,7 +192,7 @@ const schema = {
                   <span class="font-fraunces font-bold text-lg sm:text-xl text-white">{miembro.initials}</span>
                 </div>
               )}
-              <div class="flex flex-col items-start sm:items-center min-w-0">
+              <div class="flex flex-col items-center min-[360px]:items-start min-[360px]:flex-1 sm:items-center sm:flex-none min-w-0 break-words">
               <h3 class="font-fraunces font-bold text-base leading-snug" style="color: var(--foreground);">{miembro.name}</h3>
               <p class="text-sm font-semibold mt-0.5" style="color: var(--primary);">{miembro.role}</p>
               {miembro.extra && (
