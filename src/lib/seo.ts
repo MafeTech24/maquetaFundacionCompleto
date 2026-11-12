@@ -2,7 +2,8 @@
 // Centraliza la información que usan Google y los buscadores con IA
 // (ChatGPT, Perplexity, Gemini, Claude) para entender quién es la fundación.
 
-export const SITE_URL = 'https://porunmundomejor.org.ar';
+// Toma la dirección configurada en astro.config.mjs (dominio definitivo o la de Vercel mientras tanto)
+export const SITE_URL = (import.meta.env.SITE ?? 'https://porunmundomejor.org.ar').replace(/\/$/, '');
 export const SITE_NAME = 'Fundación Por Un Mundo Mejor';
 
 export const ORG_ID = `${SITE_URL}/#organizacion`;
