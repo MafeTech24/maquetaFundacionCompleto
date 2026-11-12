@@ -6,10 +6,13 @@ import CTASection from '../../components/CTASection.astro';
 import RelatedPages from '../../components/RelatedPages.astro';
 import Icon from '../../components/Icon.astro';
 import { Image } from 'astro:assets';
+import { programaSchema } from '../../lib/seo';
 ---
 
 <PageLayout
   title="Tratamiento ambulatorio de adicciones"
+  schema={programaSchema('tratamiento-ambulatorio')}
+  ogImage="/images/og/tratamiento-ambulatorio.jpg"
   description="El Tratamiento Ambulatorio de la Fundación Por Un Mundo Mejor: acompañamiento en el entorno familiar con tres espacios semanales de psicoterapia grupal, individual/familiar y multifamiliar."
 >
   <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">

@@ -8,9 +8,8 @@ import CTASection from '../components/CTASection.astro';
 // Los datos estructurados de la organización se emiten en todas las páginas desde src/lib/seo.ts
 
 const stats = [
-  { value: '20+', label: 'años de trayectoria', iconName: 'Building2' },
-  { value: '5', label: 'modalidades de tratamiento', iconName: 'LayoutGrid' },
-  // TODO: confirmar con la fundación si la duración total estimada del proceso integral cambia ahora que no hay internación
+  { value: 'Casi 20', label: 'años de trayectoria', iconName: 'Building2' },
+  { value: '6', label: 'modalidades de tratamiento', iconName: 'LayoutGrid' },
   { value: '9-12', label: 'meses de proceso integral estimado', iconName: 'Clock' },
   { value: '100%', label: 'confidencialidad garantizada', iconName: 'Lock' },
 ];
@@ -22,6 +21,13 @@ const programs = [
     href: '/programas/admision',
     iconName: 'ClipboardCheck',
     badge: 'Primer paso',
+  },
+  {
+    title: 'Abordaje psiquiátrico y psicofarmacológico',
+    description: 'Diagnóstico y tratamiento de patología dual, acompañamiento médico de la abstinencia y sostén del nuevo equilibrio durante la recuperación.',
+    href: '/programas/abordaje-psiquiatrico',
+    iconName: 'Pill',
+    badge: 'Atención médica',
   },
   {
     title: 'Hospital de Día',
@@ -53,21 +59,6 @@ const programs = [
   },
 ];
 
-const testimonials = [
-  {
-    text: '"Llegué sin saber qué esperar. Lo que encontré fue un equipo que me escuchó sin juzgarme y me ayudó a entender qué me estaba pasando. Hoy tengo otra vida."',
-    source: 'Persona egresada del programa — experiencia ilustrativa',
-  },
-  {
-    text: '"Como familiar, siempre sentí que también había un espacio para mí. El grupo de familias me cambió la forma de ver a mi hijo y la forma de acompañarlo."',
-    source: 'Familiar participante — experiencia ilustrativa',
-  },
-  {
-    text: '"El Hospital de Día y los talleres me permitieron recuperar una rutina y un proyecto propio, volviendo a mi casa cada día. El equipo estuvo en cada paso."',
-    source: 'Persona en proceso — experiencia ilustrativa',
-  },
-];
-
 // Íconos para los tres ejes institucionales
 const objetivos = [
   {
@@ -91,7 +82,7 @@ const objetivos = [
 <PageLayout
   title="Inicio"
   seoTitle="Tratamiento de adicciones en Córdoba | Fundación Por Un Mundo Mejor"
-  description="Tratamiento y prevención de adicciones en Córdoba, Argentina. Más de 20 años acompañando a personas y familias: Hospital de Día, ambulatorio y orientación familiar."
+  description="Tratamiento y prevención de adicciones en Córdoba, Argentina. Casi 20 años acompañando a personas y familias: Hospital de Día, ambulatorio y orientación familiar."
 >
 
   <!-- ═══════════════════════════════════════════════════════════
@@ -122,7 +113,7 @@ const objetivos = [
         <!-- Badge: fondo blanco sólido para contraste real contra la foto -->
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 text-sm font-semibold" style="background: oklch(1 0 0 / 0.92); border: 1px solid oklch(1 0 0 / 0.6); color: oklch(0.35 0.09 165);">
           <span class="w-2 h-2 rounded-full animate-pulse-soft" style="background: var(--primary);"></span>
-          Más de 20 años en Córdoba, Argentina
+          Casi 20 años en Córdoba, Argentina
         </div>
 
         <!-- text-shadow en el título para legibilidad sobre la foto luminosa -->
@@ -175,7 +166,7 @@ const objetivos = [
           En números
         </div>
         <h2 class="font-fraunces font-bold text-3xl sm:text-4xl" style="color: var(--foreground);">
-          Dos décadas de compromiso real
+          Casi dos décadas de compromiso real
         </h2>
       </div>
       <StatCounter stats={stats} />
@@ -237,7 +228,7 @@ const objetivos = [
           Modalidades
         </div>
         <h2 class="font-fraunces font-bold text-3xl sm:text-4xl mb-4" style="color: var(--foreground);">
-          Cinco formas de acompañarte
+          Seis formas de acompañarte
         </h2>
         <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--muted-fg);">
           Cada persona tiene una situación única. Por eso ofrecemos distintas modalidades que se adaptan al momento y las necesidades de cada caso.
@@ -254,41 +245,6 @@ const objetivos = [
         <a href="/programas" class="btn-primary">
           Ver todos los programas
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════
-       TESTIMONIOS
-  ════════════════════════════════════════════════════════════ -->
-  <section class="section-py section-mint relative overflow-hidden">
-    <!-- Blob decorativo -->
-    <div class="blob w-72 h-72 -top-16 -right-16" style="opacity: 0.12;"></div>
-
-    <div class="container-6xl relative z-10">
-      <div class="text-center mb-14">
-        <div class="eyebrow mb-4">
-          <span class="eyebrow-dot"></span>
-          Voces del proceso
-        </div>
-        <h2 class="font-fraunces font-bold text-3xl sm:text-4xl mb-3" style="color: var(--foreground);">
-          Lo que transformó vidas
-        </h2>
-        <p class="text-xs" style="color: var(--muted-fg);">
-          * Los testimonios son representativos del tipo de experiencias que acompañamos y no corresponden a personas reales identificables.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {testimonials.map((t) => (
-          <div class="card-base flex flex-col">
-            <svg class="w-8 h-8 mb-4 flex-shrink-0" style="color: var(--primary); opacity: 0.4;" fill="currentColor" viewBox="0 0 32 32">
-              <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/>
-            </svg>
-            <p class="text-sm leading-relaxed italic flex-1 mb-4" style="color: var(--foreground);">{t.text}</p>
-            <p class="text-xs" style="color: var(--muted-fg);">{t.source}</p>
-          </div>
-        ))}
       </div>
     </div>
   </section>

@@ -6,6 +6,7 @@ import Accordion from '../components/Accordion.astro';
 import CTASection from '../components/CTASection.astro';
 import RelatedPages from '../components/RelatedPages.astro';
 import { Image } from 'astro:assets';
+import { faqSchema, sinHtml } from '../lib/seo';
 
 const faqs = [
   {
@@ -41,6 +42,8 @@ const faqs = [
 
 <PageLayout
   title="Guía para familias ante el consumo"
+  ogImage="/images/og/familias.jpg"
+  schema={faqSchema(faqs.map((f) => ({ q: sinHtml(f.question), a: sinHtml(f.answer) })))}
   description="Guía para familias de personas con consumo problemático: cómo empezar, qué esperar, cómo acompañar sin agotarse. Orientación Familiar y Psicoterapia Multifamiliar explicadas en un tono cercano."
 >
 

@@ -7,6 +7,7 @@ import RelatedPages from '../../components/RelatedPages.astro';
 import Icon from '../../components/Icon.astro';
 import ImageCarousel from '../../components/ImageCarousel.astro';
 import { Image } from 'astro:assets';
+import { programaSchema } from '../../lib/seo';
 
 const activities = [
   { time: '8:00–9:00', activity: 'Llegada, desayuno grupal y apertura del día' },
@@ -37,6 +38,8 @@ const galleryImages = [
   { src: '/images/hospital-dia/hospital-dia-16-manualidades-grupal.jpg', alt: 'Grupo participando de un taller de manualidades' },
   { src: '/images/hospital-dia/hospital-dia-17-encuentro-grupal.jpg', alt: 'Encuentro grupal y actividad compartida en la Fundación' },
   { src: '/images/hospital-dia/hospital-dia-18-dia-amistad.jpg', alt: 'Mensaje institucional por el Día de la Amistad' },
+  { src: '/images/hospital-dia/hospital-dia-18b-huerta-canteros.jpg', alt: 'Grupo trabajando en los canteros de la huerta de la Fundación' },
+  { src: '/images/hospital-dia/hospital-dia-18c-huerta-jornada.jpg', alt: 'Jornada al aire libre en la huerta, rodeada de árboles y aromáticas' },
   { src: '/images/hospital-dia/hospital-dia-19-mural-compromiso.jpg', alt: 'Presentación grupal de un mural sobre compromiso y responsabilidad' },
   { src: '/images/hospital-dia/hospital-dia-20-cartel-compromiso.jpg', alt: 'Cartel realizado en una actividad sobre compromiso y restauración' },
 ];
@@ -44,6 +47,8 @@ const galleryImages = [
 
 <PageLayout
   title="Hospital de Día para adicciones"
+  schema={programaSchema('hospital-de-dia')}
+  ogImage="/images/og/hospital-de-dia.jpg"
   description="El Hospital de Día de la Fundación Por Un Mundo Mejor: jornada completa de 8 horas, espacio intensivo hacia la reinserción social con capacitación laboral, micro-emprendimientos y psicoterapia."
 >
   <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">

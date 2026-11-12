@@ -8,7 +8,7 @@ export const SITE_NAME = 'Fundación Por Un Mundo Mejor';
 export const ORG_ID = `${SITE_URL}/#organizacion`;
 export const WEBSITE_ID = `${SITE_URL}/#sitio`;
 
-// TODO: verificar dirección y teléfono con la fundación antes de publicar
+// Dirección y teléfono confirmados (noviembre 2026)
 export const NAP = {
   streetAddress: '27 de Abril 616',
   addressLocality: 'Córdoba',
@@ -17,6 +17,22 @@ export const NAP = {
   addressCountry: 'AR',
   telephone: '+5493516716580',
 };
+
+// Códigos de verificación de buscadores (pegar acá el valor "content" que te dan)
+// Google Search Console → Configuración → Verificación de propiedad → Etiqueta HTML
+export const GOOGLE_SITE_VERIFICATION = '';
+// Bing Webmaster Tools → Agregar sitio → Metaetiqueta HTML
+export const BING_SITE_VERIFICATION = '';
+
+/** Programas de la fundación: se usan en los datos estructurados y en la ficha de la organización */
+export const PROGRAMAS = [
+  { slug: 'admision', name: 'Admisión', description: 'Tres entrevistas psicológicas y psiquiátricas de evaluación para elaborar un diagnóstico presuntivo y definir el plan de tratamiento.' },
+  { slug: 'abordaje-psiquiatrico', name: 'Abordaje psiquiátrico y psicofarmacológico', description: 'Intervención clínica médica especializada para el diagnóstico y tratamiento de patología dual o subyacente a una adicción, los estados de abstinencia en los comienzos de la recuperación y el sostén del nuevo equilibrio hasta su consolidación.' },
+  { slug: 'hospital-de-dia', name: 'Hospital de Día', description: 'Jornada completa de 8 horas diarias durante unos 6 meses, orientada a la reinserción social y laboral con capacitación práctica, microemprendimientos, deporte y psicoterapia.' },
+  { slug: 'tratamiento-ambulatorio', name: 'Tratamiento Ambulatorio', description: 'Acompañamiento de 3 a 6 meses en el entorno familiar con tres espacios semanales: psicoterapia grupal, individual/familiar y multifamiliar.' },
+  { slug: 'orientacion-familiar', name: 'Orientación Familiar', description: 'Encuentros quincenales de 3 a 6 meses para familias preocupadas por un ser querido, aunque la persona todavía no quiera tratarse.' },
+  { slug: 'psicoterapia-multifamiliar', name: 'Psicoterapia Multifamiliar', description: 'Programa de mínimo 12 módulos para familiares, para repensar el vínculo con el paciente y construir una alianza terapéutica.' },
+];
 
 export const SOCIAL = [
   'https://www.instagram.com/fundacion.porunmundomejor/',
@@ -39,8 +55,8 @@ export function globalSchema() {
       },
       image: `${SITE_URL}/images/og-image.jpg`,
       description:
-        'Fundación de Córdoba, Argentina, dedicada a la prevención y el tratamiento de las adicciones y el consumo problemático de sustancias, con un equipo interdisciplinario de salud mental. Ofrece admisión, Hospital de Día, tratamiento ambulatorio, orientación familiar y psicoterapia multifamiliar.',
-      foundingDate: '2004',
+        'Fundación de Córdoba, Argentina, dedicada a la prevención y el tratamiento de las adicciones y el consumo problemático de sustancias, con un equipo interdisciplinario de salud mental. Ofrece admisión, abordaje psiquiátrico y psicofarmacológico, Hospital de Día, tratamiento ambulatorio, orientación familiar y psicoterapia multifamiliar.',
+      foundingDate: '2008',
       medicalSpecialty: 'Psychiatric',
       address: { '@type': 'PostalAddress', ...withoutPhone(NAP) },
       telephone: NAP.telephone,
@@ -61,12 +77,21 @@ export function globalSchema() {
         'Consumo problemático de sustancias',
         'Alcoholismo',
         'Patología dual',
+        'Abordaje psiquiátrico y psicofarmacológico',
         'Salud mental',
         'Hospital de Día',
         'Orientación familiar',
         'Psicoterapia multifamiliar',
         'Prevención de adicciones en adolescentes',
       ],
+      hasMap: 'https://www.google.com/maps/search/?api=1&query=27+de+Abril+616,+C%C3%B3rdoba,+Argentina',
+      isAcceptingNewPatients: true,
+      availableService: PROGRAMAS.map((p) => ({
+        '@type': 'MedicalTherapy',
+        name: p.name,
+        description: p.description,
+        url: `${SITE_URL}/programas/${p.slug}`,
+      })),
       sameAs: SOCIAL,
     },
     {
@@ -124,4 +149,38 @@ export function slugify(texto: string) {
 /** @id estable para una persona del equipo (enlaza autoría de artículos con /equipo) */
 export function personId(nombre: string) {
   return `${SITE_URL}/equipo#${slugify(nombre)}`;
+}
+
+/** Página de un programa → MedicalWebPage + MedicalTherapy (ayuda a buscadores y asistentes de IA a entender cada tratamiento) */
+export function programaSchema(slug: string) {
+  const p = PROGRAMAS.find((x) => x.slug === slug);
+  if (!p) return [];
+  const url = `${SITE_URL}/programas/${p.slug}`;
+  return [
+    {
+      '@type': 'MedicalWebPage',
+      '@id': `${url}#pagina`,
+      url,
+      name: p.name,
+      description: p.description,
+      inLanguage: 'es-AR',
+      isPartOf: { '@id': WEBSITE_ID },
+      publisher: { '@id': ORG_ID },
+      about: { '@id': `${url}#terapia` },
+      audience: { '@type': 'Audience', audienceType: 'Personas con consumo problemático de sustancias y sus familias' },
+    },
+    {
+      '@type': 'MedicalTherapy',
+      '@id': `${url}#terapia`,
+      name: p.name,
+      description: p.description,
+      relevantSpecialty: 'Psychiatric',
+      provider: { '@id': ORG_ID },
+    },
+  ];
+}
+
+/** Quita etiquetas HTML (para usar textos con <strong> en datos estructurados) */
+export function sinHtml(texto: string) {
+  return texto.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 }

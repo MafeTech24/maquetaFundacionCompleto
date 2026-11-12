@@ -6,10 +6,13 @@ import CTASection from '../../components/CTASection.astro';
 import RelatedPages from '../../components/RelatedPages.astro';
 import Icon from '../../components/Icon.astro';
 import { Image } from 'astro:assets';
+import { programaSchema } from '../../lib/seo';
 ---
 
 <PageLayout
   title="Psicoterapia Multifamiliar"
+  schema={programaSchema('psicoterapia-multifamiliar')}
+  ogImage="/images/og/psicoterapia-multifamiliar.jpg"
   description="El programa de Psicoterapia Multifamiliar de la Fundación Por Un Mundo Mejor: mínimo 12 módulos para familiares, para repensar el vínculo con el paciente y construir una alianza terapéutica real."
 >
   <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">

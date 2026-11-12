@@ -1,6 +1,6 @@
 # Fundación Por Un Mundo Mejor
 
-> Fundación de Córdoba, Argentina, dedicada desde 2004 a la prevención y el tratamiento de las adicciones y el consumo problemático de sustancias. Trabaja con un equipo interdisciplinario (psiquiatría, psicología, clínica médica, nutrición, trabajo social, educación, talleristas y operadores terapéuticos) y acompaña tanto a la persona que consume como a su familia.
+> Fundación de Córdoba, Argentina, dedicada desde 2008 a la prevención y el tratamiento de las adicciones y el consumo problemático de sustancias. Trabaja con un equipo interdisciplinario (psiquiatría, psicología, clínica médica, nutrición, trabajo social, educación, talleristas y operadores terapéuticos) y acompaña tanto a la persona que consume como a su familia.
 
 Datos clave:
 
@@ -13,6 +13,7 @@ Datos clave:
 ## Programas de tratamiento
 
 - [Admisión](https://porunmundomejor.org.ar/programas/admision): tres entrevistas psicológicas y psiquiátricas de evaluación; es el primer paso de cualquier tratamiento.
+- [Abordaje psiquiátrico y psicofarmacológico](https://porunmundomejor.org.ar/programas/abordaje-psiquiatrico): intervención clínica médica especializada para el diagnóstico y tratamiento de patología dual o subyacente a una adicción, los estados de abstinencia al comienzo de la recuperación y el sostén del nuevo equilibrio hasta su consolidación.
 - [Hospital de Día](https://porunmundomejor.org.ar/programas/hospital-de-dia): jornada de 8 horas diarias durante unos 6 meses, orientada a la reinserción social y laboral.
 - [Tratamiento Ambulatorio](https://porunmundomejor.org.ar/programas/tratamiento-ambulatorio): de 3 a 6 meses, con tres espacios semanales (psicoterapia grupal, individual/familiar y multifamiliar).
 - [Orientación Familiar](https://porunmundomejor.org.ar/programas/orientacion-familiar): encuentros quincenales de 3 a 6 meses para familias, aunque la persona que consume todavía no quiera tratarse.
@@ -39,3 +40,31 @@ Datos clave:
 - [Prevención en la adolescencia](https://porunmundomejor.org.ar/recursos/prevencion-adolescencia)
 - [Mitos sobre la reducción de daños](https://porunmundomejor.org.ar/recursos/mitos-reduccion-danos)
 - [THC versus anandamida](https://porunmundomejor.org.ar/recursos/thc-versus-anandamida)
+
+## Cómo empezar
+
+1. Escribir por WhatsApp al +54 9 351 671-6580 o completar el formulario en https://porunmundomejor.org.ar/contacto
+2. Coordinar la admisión: tres entrevistas de evaluación psicológica y psiquiátrica.
+3. El equipo propone, junto con la persona y su familia, el plan de tratamiento más adecuado.
+
+La familia puede consultar aunque la persona que consume todavía no quiera tratarse, a través de Orientación Familiar.
+
+## Preguntas frecuentes
+
+- **¿Cuánto dura un tratamiento?** Depende de la modalidad. El Hospital de Día dura aproximadamente 6 meses; el Tratamiento Ambulatorio, de 3 a 6 meses. El Plan A (que combina Hospital de Día y Ambulatorio) dura entre 9 y 12 meses; el Plan B es de aproximadamente 6 meses. La duración final siempre se define y ajusta en base al proceso de cada persona.
+- **¿Puedo elegir la modalidad de tratamiento?** La modalidad se define de manera conjunta entre el equipo y la persona (y su familia) durante el proceso de admisión. Se evalúan el nivel de compromiso del consumo, el contexto familiar, la inserción social y otros factores. En algunos casos la indicación es clara; en otros, hay margen para las preferencias personales.
+- **¿Qué pasa si recaigo durante el tratamiento?** La recaída es parte posible de cualquier proceso de recuperación, no es un fracaso. Si ocurre, el equipo la trabaja clínicamente: se evalúa qué pasó, qué factores contribuyeron y qué ajustes son necesarios en el plan. En algunos casos implica retomar una etapa anterior; en otros, intensificar el acompañamiento.
+- **¿La fundación atiende a personas judicializadas?** Sí. La fundación atiende casos derivados por el Superior Tribunal de Justicia de la Provincia de Córdoba. Los protocolos y la confidencialidad se manejan según las condiciones de cada disposición judicial.
+- **¿Atienden también trastornos duales?** Sí. La fundación tiene experiencia específica en el abordaje de pacientes duales: personas con consumo problemático y un trastorno de personalidad, cuadro psicótico o discapacidad intelectual subyacente. El tratamiento integra ambas dimensiones.
+- **¿Puedo pedir orientación si mi familiar no quiere tratarse?** Absolutamente. El programa de Orientación Familiar existe exactamente para eso: para que la familia pueda comenzar su proceso sin que el ser querido participe todavía. La primera consulta es confidencial y no implica ningún compromiso.
+- **¿Qué puedo hacer mientras espero que mi familiar acepte tratamiento?** Venir al espacio de Orientación Familiar te permitirá entender mejor lo que está pasando, aprender cómo hablar sin que la conversación termine en conflicto, identificar qué actitudes ayudan y cuáles dificultan el proceso, y cuidarte vos también. No es tiempo perdido: muchas veces los cambios en la dinámica familiar son lo que finalmente motiva al ser querido a dar el paso.
+- **¿La familia participa en el tratamiento del paciente?** Sí, especialmente a través de la Psicoterapia Multifamiliar. La familia no es solo contexto: es parte activa del proceso de recuperación. El grado de participación se define en la evaluación y puede variar según la modalidad.
+- **¿Las obras sociales cubren el tratamiento?** La fundación mantiene convenios continuos con obras sociales y organismos de gobierno. La cobertura específica depende de cada obra social. En la primera consulta podés preguntar sobre la situación de tu cobertura particular.
+- **¿Qué pasa si no tengo obra social?** Existen alternativas de cobertura pública y gestión a través de organismos como el PAMI, el Ministerio de Salud provincial o la SEDRONAR. El equipo puede orientarte sobre las opciones disponibles en tu caso.
+- **¿Se puede hacer un tratamiento particular?** Sí. Es posible realizar el tratamiento en modalidad particular. Los aranceles se informan en la primera consulta según la modalidad elegida.
+- **¿La consulta es confidencial?** Sí. Todo lo que se comparte en una consulta individual o familiar es confidencial. El equipo no comparte información con terceros sin el consentimiento explícito de la persona atendida, salvo en situaciones de riesgo grave para la vida.
+- **¿Alguien del trabajo o la escuela puede enterarse?** No. La fundación no informa a empleadores, instituciones educativas ni a ningún tercero sobre la situación de las personas que consultan o se tratan, a menos que la persona lo solicite expresamente.
+- **¿El tratamiento figura en algún registro público?** No. El tratamiento en una institución de salud mental no figura en registros públicos de acceso libre. Los datos clínicos son protegidos por la Ley de Salud Mental N° 26.657 y por el secreto profesional.
+- **¿Qué pasa con los datos del formulario de contacto?** Los datos que ingresás en el formulario de contacto se utilizan exclusivamente para responderte. No se comparten con terceros ni se usan con fines comerciales. Podés leer nuestra Política de Privacidad para más detalles.
+
+Más preguntas y respuestas: https://porunmundomejor.org.ar/preguntas-frecuentes

@@ -1,5 +1,5 @@
 ---
-// /programas — Índice de las 5 modalidades
+// /programas — Índice de las 6 modalidades
 import PageLayout from '../../layouts/PageLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProgramCard from '../../components/ProgramCard.astro';
@@ -14,6 +14,13 @@ const programs = [
     iconName: 'ClipboardCheck',
     badge: 'Primer paso',
     duration: 'Proceso breve de evaluación',
+  },
+  {
+    title: 'Abordaje psiquiátrico y psicofarmacológico',
+    description: 'Intervención clínica médica especializada: diagnóstico y tratamiento de patología dual o subyacente a la adicción, estados de abstinencia al comienzo de la recuperación y sostén del nuevo equilibrio hasta su consolidación.',
+    href: '/programas/abordaje-psiquiatrico',
+    iconName: 'Pill',
+    badge: 'Atención médica',
   },
   {
     title: 'Hospital de Día',
@@ -51,7 +58,8 @@ const programs = [
 
 <PageLayout
   title="Programas de tratamiento en Córdoba"
-  description="Las cinco modalidades de tratamiento de la Fundación Por Un Mundo Mejor: desde la admisión hasta el ambulatorio, adaptadas a cada persona y momento del proceso."
+  ogImage="/images/og/programas.jpg"
+  description="Las seis modalidades de tratamiento de la Fundación Por Un Mundo Mejor: desde la admisión hasta el ambulatorio, adaptadas a cada persona y momento del proceso."
 >
 
   <!-- Hero -->
@@ -60,7 +68,7 @@ const programs = [
       <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Programas' }]} />
       <h1 class="font-heading font-black text-4xl sm:text-5xl text-white mb-4">Programas de Tratamiento</h1>
       <p class="text-[oklch(1_0_0_/_0.72)] text-lg max-w-2xl leading-relaxed">
-        Cada persona llega en un momento diferente. Por eso ofrecemos cinco modalidades que se adaptan a distintas situaciones, niveles de compromiso y contextos de vida.
+        Cada persona llega en un momento diferente. Por eso ofrecemos seis modalidades que se adaptan a distintas situaciones, niveles de compromiso y contextos de vida.
       </p>
     </div>
   </div>

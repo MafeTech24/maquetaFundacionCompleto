@@ -30,4 +30,16 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://porunmundomejor.org.ar/sitemap-index.xml

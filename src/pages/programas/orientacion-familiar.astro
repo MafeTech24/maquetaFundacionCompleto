@@ -6,10 +6,13 @@ import CTASection from '../../components/CTASection.astro';
 import RelatedPages from '../../components/RelatedPages.astro';
 import Icon from '../../components/Icon.astro';
 import { Image } from 'astro:assets';
+import { programaSchema } from '../../lib/seo';
 ---
 
 <PageLayout
   title="Orientación Familiar en adicciones"
+  schema={programaSchema('orientacion-familiar')}
+  ogImage="/images/og/orientacion-familiar.jpg"
   description="El programa de Orientación Familiar de la Fundación Por Un Mundo Mejor: encuentros quincenales de 3 a 6 meses para familias preocupadas por un ser querido, sin que el paciente participe todavía."
 >
   <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">

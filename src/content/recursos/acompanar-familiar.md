@@ -65,4 +65,4 @@ Para consultas no urgentes, nuestro equipo está disponible de lunes a viernes e
 
 ---
 
-*Artículo elaborado por el equipo de la Fundación Por Un Mundo Mejor con base en la experiencia clínica acumulada de más de 20 años de trabajo con personas y familias en Córdoba.*
+*Artículo elaborado por el equipo de la Fundación Por Un Mundo Mejor con base en la experiencia clínica acumulada en casi 20 años de trabajo con personas y familias en Córdoba.*

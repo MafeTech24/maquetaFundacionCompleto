@@ -2,7 +2,7 @@
 // Layout principal — Fundación Por Un Mundo Mejor
 // Incluye: head completo (SEO, Open Graph, datos estructurados), header, footer, WhatsApp flotante, toggle dark mode
 import '../styles/global.css';
-import { globalSchema, SITE_NAME } from '../lib/seo';
+import { globalSchema, SITE_NAME, GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION } from '../lib/seo';
 
 export interface Props {
   /** Título corto de la página; se le agrega " | Fundación Por Un Mundo Mejor" */
@@ -31,7 +31,7 @@ export interface Props {
 const {
   title,
   seoTitle,
-  description = 'Fundación para el tratamiento y prevención de las adicciones en Córdoba, Argentina. Más de 20 años acompañando a personas y familias con un equipo interdisciplinario.',
+  description = 'Fundación para el tratamiento y prevención de las adicciones en Córdoba, Argentina. Casi 20 años acompañando a personas y familias con un equipo interdisciplinario.',
   ogImage = '/images/og-image.jpg',
   ogImageAlt = 'Fundación Por Un Mundo Mejor — tratamiento y prevención de adicciones en Córdoba',
   ogType = 'website',
@@ -48,7 +48,8 @@ const canonicalURL = canonical
   : new URL(Astro.url.pathname, Astro.site);
 
 const ogImageURL = new URL(ogImage, Astro.site);
-const ogImageIsDefault = ogImage === '/images/og-image.jpg';
+// Imágenes para compartir preparadas en 1200×630 (la general y las de /images/og/)
+const ogImageIsDefault = ogImage === '/images/og-image.jpg' || ogImage.startsWith('/images/og/');
 
 // Grafo de datos estructurados: organización + sitio (siempre) + lo propio de la página
 const pageSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
@@ -102,6 +103,13 @@ const jsonLd = {
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
+  <!-- Verificación de buscadores (se completa en src/lib/seo.ts) -->
+  {GOOGLE_SITE_VERIFICATION && <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />}
+  {BING_SITE_VERIFICATION && <meta name="msvalidate.01" content={BING_SITE_VERIFICATION} />}
+
+  <!-- Mapa del sitio -->
+  <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
   <!-- Resumen del sitio para buscadores con IA -->
   <link rel="alternate" type="text/plain" href="/llms.txt" title="Resumen del sitio para IA" />
 
@@ -109,7 +117,10 @@ const jsonLd = {
   <slot name="head" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Google Fonts: Plus Jakarta Sans (headings) + Inter (body/UI) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

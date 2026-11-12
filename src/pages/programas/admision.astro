@@ -6,10 +6,13 @@ import CTASection from '../../components/CTASection.astro';
 import RelatedPages from '../../components/RelatedPages.astro';
 import Icon from '../../components/Icon.astro';
 import { Image } from 'astro:assets';
+import { programaSchema } from '../../lib/seo';
 ---
 
 <PageLayout
   title="Admisión: cómo iniciar un tratamiento"
+  schema={programaSchema('admision')}
+  ogImage="/images/og/admision.jpg"
   description="El proceso de admisión en la Fundación Por Un Mundo Mejor: tres entrevistas de evaluación psicológica y psiquiátrica para definir el diagnóstico y el plan de tratamiento más adecuado."
 >
   <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">

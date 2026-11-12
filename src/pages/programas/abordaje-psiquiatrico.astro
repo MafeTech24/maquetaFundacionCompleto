@@ -1,0 +1,128 @@
+---
+// /programas/abordaje-psiquiatrico
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
+import Icon from '../../components/Icon.astro';
+import { Image } from 'astro:assets';
+import { programaSchema } from '../../lib/seo';
+
+const descripcion =
+  'Intervención clínica médica especializada para el diagnóstico y tratamiento de patología dual o subyacente a una adicción, los estados de abstinencia en los comienzos de la recuperación y el sostén o mantenimiento de un nuevo equilibrio hasta su consolidación.';
+
+const ejes = [
+  {
+    icon: 'ClipboardCheck',
+    title: 'Diagnóstico y tratamiento',
+    desc: 'De la patología dual o de la patología subyacente a una adicción.',
+  },
+  {
+    icon: 'Sunrise',
+    title: 'Estados de abstinencia',
+    desc: 'Abordaje médico de la abstinencia en los comienzos de la recuperación.',
+  },
+  {
+    icon: 'ShieldCheck',
+    title: 'Sostén del nuevo equilibrio',
+    desc: 'Acompañamiento y mantenimiento del nuevo equilibrio hasta su consolidación.',
+  },
+];
+
+// Datos estructurados: página médica + terapia (definidos en src/lib/seo.ts)
+const schema = programaSchema('abordaje-psiquiatrico');
+---
+
+<PageLayout
+  title="Abordaje psiquiátrico en adicciones"
+  description="Abordaje psiquiátrico y psicofarmacológico en la Fundación Por Un Mundo Mejor: diagnóstico y tratamiento de patología dual, estados de abstinencia y sostén del nuevo equilibrio en la recuperación."
+  schema={schema}
+>
+  <div class="relative overflow-hidden py-20" style="background: var(--gradient-hero);">
+    <div class="container-6xl relative z-10">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Programas', href: '/programas' }, { label: 'Abordaje psiquiátrico' }]} />
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/20 border border-brand-500/30 flex items-center justify-center text-primary shrink-0">
+          <Icon name="Pill" class="w-7 h-7" />
+        </div>
+        <div>
+          <span class="text-brand-300 text-sm font-semibold">Atención médica especializada</span>
+          <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Abordaje psiquiátrico y psicofarmacológico</h1>
+        </div>
+      </div>
+      <p class="text-[oklch(1_0_0_/_0.72)] text-lg max-w-2xl">La mirada médica del tratamiento: diagnóstico, acompañamiento de la abstinencia y sostén del proceso de recuperación.</p>
+    </div>
+  </div>
+
+  <!-- Imagen de cabecera — aspect-ratio 4:3 fijo -->
+  <!-- TODO: reemplazar por la imagen propia de esta sección (public/images/abordaje-psiquiatrico.jpg) -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <div class="w-full rounded-2xl overflow-hidden shadow-card" style="aspect-ratio: 4 / 3;">
+      <Image
+        src="/images/tratamiento-ambulatorio.jpg"
+        alt="Consulta médica individual en un consultorio de la Fundación Por Un Mundo Mejor"
+        width={1200}
+        height={900}
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+
+    <!-- Qué es -->
+    <section>
+      <h2 class="font-sora font-bold text-2xl text-gray-900 dark:text-white mb-4">¿En qué consiste?</h2>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed">{descripcion}</p>
+    </section>
+
+    <!-- Ejes -->
+    <section>
+      <h2 class="font-sora font-bold text-2xl text-gray-900 dark:text-white mb-6">¿Qué abarca?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {ejes.map((eje) => (
+          <div class="flex flex-col gap-3 p-6 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: color-mix(in oklch, var(--primary) 12%, var(--background)); color: var(--primary);">
+              <Icon name={eje.icon} class="w-5 h-5" />
+            </div>
+            <h3 class="font-sora font-semibold text-base text-gray-900 dark:text-white">{eje.title}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{eje.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Equipo -->
+    <section class="rounded-2xl p-6 sm:p-7" style="background: color-mix(in oklch, var(--primary) 8%, var(--background)); border: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);">
+      <h2 class="font-sora font-bold text-xl text-gray-900 dark:text-white mb-3">¿Quiénes lo llevan adelante?</h2>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+        El área médica de la fundación, integrada por psiquiatría y clínica médica, trabaja de manera coordinada con el resto del equipo terapéutico interdisciplinario.
+      </p>
+      <a href="/equipo" class="inline-flex items-center gap-2 font-bold text-sm" style="color: var(--primary);">
+        Conocé al equipo
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </section>
+
+    <CTASection
+      title="¿Querés hacer una consulta?"
+      description="Escribinos por WhatsApp o completá el formulario de contacto y te orientamos sobre los primeros pasos."
+      primaryLabel="Contactar"
+      primaryHref="/contacto"
+      secondaryLabel="WhatsApp"
+      secondaryHref="https://wa.me/5493516716580?text=Hola%2C%20quisiera%20consultar%20sobre%20el%20abordaje%20psiqui%C3%A1trico"
+      variant="gradient"
+    />
+
+    <RelatedPages
+      pages={[
+        { title: 'Admisión', href: '/programas/admision', description: 'El primer paso: tres entrevistas de evaluación psicológica y psiquiátrica.', iconName: 'ClipboardCheck' },
+        { title: 'Hospital de Día', href: '/programas/hospital-de-dia', description: 'Programa intensivo de jornada completa (8 horas) para reinserción social.', iconName: 'Sun' },
+        { title: 'Planes de Tratamiento', href: '/planes-de-tratamiento', description: 'Conocé cómo se combinan las modalidades en el Plan A, B y C.', iconName: 'LayoutGrid' },
+      ]}
+    />
+  </div>
+</PageLayout>

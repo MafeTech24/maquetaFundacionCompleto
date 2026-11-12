@@ -7,14 +7,13 @@ import CTASection from '../components/CTASection.astro';
 import { Image } from 'astro:assets';
 
 const timelineItems = [
-  { year: '2004', title: 'Fundación de la organización', description: 'Nace en Córdoba con el propósito de acompañar a personas afectadas por el consumo problemático de sustancias, con un enfoque centrado en la autonomía y el autogobierno.' },
-  { year: '2007', title: 'Espacio de convivencia y talleres', description: 'Se inaugura el espacio terapéutico integral, permitiendo acompañar procesos con hábitos, talleres, psicoterapia y proyecto de vida.' },
+  { year: '2008', title: 'Fundación de la organización', description: 'Nace en Córdoba con el propósito de acompañar a personas afectadas por el consumo problemático de sustancias, con un enfoque centrado en la autonomía y el autogobierno.' },
+  { year: '2008', title: 'Espacio de convivencia y talleres', description: 'Se inaugura el espacio terapéutico integral, permitiendo acompañar procesos con hábitos, talleres, psicoterapia y proyecto de vida.' },
   { year: '2010', title: 'Convenios con obras sociales', description: 'Se establecen convenios continuos con obras sociales y organismos de gobierno, ampliando el acceso al tratamiento para personas de distintos contextos.' },
   { year: '2013', title: 'Hospital de Día', description: 'Se implementa el programa de Hospital de Día como espacio estructurado de reinserción a la vida social y laboral, con 8 horas diarias de actividades y acompañamiento.' },
   { year: '2016', title: 'Unidad de prácticas UNC y UPC', description: 'La fundación se convierte en unidad de prácticas supervisadas para carreras de la Universidad Nacional de Córdoba y la Universidad Provincial de Córdoba.' },
   { year: '2019', title: 'Programa de Orientación Familiar', description: 'Se formaliza el espacio de encuentros quincenales para familias preocupadas por un ser querido, disponible aún antes de que el paciente inicie tratamiento.' },
   { year: '2022', title: 'Pacientes duales y judicializados', description: 'Se amplía la cobertura para acompañar a pacientes con trastornos duales (personalidad, psicosis, discapacidad intelectual) y casos derivados por el Superior Tribunal de Justicia de Córdoba.' },
-  { year: '2024', title: '20 años de trayectoria', description: 'La fundación cumple más de 20 años de trabajo continuo con población juvenil y adulta de Córdoba y otras provincias argentinas, consolidando su equipo y su enfoque terapéutico.' },
 ];
 
 const badges = [
@@ -50,8 +49,9 @@ const poblacion = [
 ---
 
 <PageLayout
-  title="Nosotros: 20 años en salud mental"
-  description="Conocé la historia, misión y objetivos institucionales de la Fundación Por Un Mundo Mejor. Más de 20 años de trabajo en salud mental y adicciones en Córdoba."
+  title="Nosotros: casi 20 años en salud mental"
+  ogImage="/images/og/nosotros.jpg"
+  description="Conocé la historia, misión y objetivos institucionales de la Fundación Por Un Mundo Mejor. Casi 20 años de trabajo en salud mental y adicciones en Córdoba."
 >
 
   <!-- Hero interior -->
@@ -67,7 +67,7 @@ const poblacion = [
         Quiénes somos
       </h1>
       <p class="text-lg max-w-2xl leading-relaxed" style="color: oklch(1 0 0 / 0.72);">
-        Más de 20 años de trabajo ininterrumpido con personas y familias afectadas por el consumo problemático de sustancias en Córdoba y otras provincias argentinas.
+        Casi 20 años de trabajo ininterrumpido con personas y familias afectadas por el consumo problemático de sustancias en Córdoba y otras provincias argentinas.
       </p>
     </div>
   </div>
@@ -112,9 +112,9 @@ const poblacion = [
             <h3 class="font-fraunces font-bold text-lg mb-4">En números</h3>
             <div class="grid grid-cols-2 gap-3">
               {[
-                { label: 'Años de trayectoria', value: '20+' },
+                { label: 'Años de trayectoria', value: 'Casi 20' },
                 { label: 'Modalidades de tratamiento', value: '6' },
-                { label: 'Duración del proceso integral', value: '14-18 meses' },
+                { label: 'Duración del proceso integral', value: '9-12 meses' },
                 { label: 'Provincias con pacientes atendidos', value: 'Múltiples' },
               ].map((item) => (
                 <div class="flex flex-col" style="border-bottom: 1px solid oklch(1 0 0 / 0.15); padding-bottom: 0.5rem;">
@@ -216,7 +216,7 @@ const poblacion = [
         <span class="eyebrow-dot"></span>
         Historia
       </div>
-      <h2 class="font-fraunces font-bold text-3xl mb-10" style="color: var(--foreground);">20 años de trayectoria</h2>
+      <h2 class="font-fraunces font-bold text-3xl mb-10" style="color: var(--foreground);">Casi 20 años de trayectoria</h2>
       <div class="max-w-3xl">
         <Timeline items={timelineItems} variant="years" />
       </div>
